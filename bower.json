@@ -1,0 +1,30 @@
+{
+  "name": "pdfchecker",
+  "description": "The application is used to check all the uploaded pdfs by all the users",
+  "main": "server.js",
+  "authors": [
+    "Aakash Dhongade"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "PDF",
+    "checker",
+    "html",
+    "css",
+    "js",
+    "mdl"
+  ],
+  "homepage": "https://github.com/dhongadeaakash/PDFChecker",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "material-design-lite": "^1.2.1"
+  }
+}

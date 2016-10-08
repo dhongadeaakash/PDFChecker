@@ -1,0 +1,36 @@
+{
+  "name": "pdfchecker",
+  "version": "1.0.0",
+  "description": "The application is used to check all the uploaded pdfs by all the users",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhongadeaakash/PDFChecker.git"
+  },
+  "keywords": [
+    "PDF",
+    "checker",
+    "html",
+    "css",
+    "js",
+    "mdl"
+  ],
+  "author": "Aakash Dhongade",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dhongadeaakash/PDFChecker/issues"
+  },
+  "homepage": "https://github.com/dhongadeaakash/PDFChecker#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "jade": "^1.11.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}
