@@ -18,6 +18,12 @@ app.use(express.static('public')); //static route handling
 app.use(bodyParser.json());// assuming POST: {"name":"foo","color":"red"} <-- JSON encoding
 app.use(bodyParser.urlencoded({extended:true}));// assuming POST: name=foo&color=red <-- URL encoding
 
+
+// all routes.
+app.get('/',function(req,res){
+	res.render('test')
+})
+
 //Starting listening for requests
 app.listen(8080);
 console.log("Server started listening at port 8080")
