@@ -5,6 +5,7 @@ var bodyParser = require('body-parser')
 //Initailize the express server
 
 
+var homeController = require('./server/controllers/home');
 
 
 
@@ -20,9 +21,7 @@ app.use(bodyParser.urlencoded({extended:true}));// assuming POST: name=foo&color
 
 
 // all routes.
-app.get('/',function(req,res){
-	res.render('test')
-})
+app.get('/',homeController.getIndex);
 
 //Starting listening for requests
 app.listen(8080);

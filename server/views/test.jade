@@ -1,3 +1,36 @@
 extends ./includes/layout
 block main
-	p howdy!
+	// Simple header with scrollable tabs.
+	.mdl-layout.mdl-js-layout.mdl-layout--fixed-header
+		header.mdl-layout__header.mdl-color--blue
+			.mdl-layout-icon
+			.mdl-layout__header-row
+				// Title
+				span.mdl-layout-title Abstract Review
+				// Tabs
+			.mdl-layout__tab-bar.mdl-js-ripple-effect
+				a.mdl-layout__tab.is-active(href='#scroll-tab-1') Introduction
+				a.mdl-layout__tab(href='#scroll-tab-2') Rules
+				a.mdl-layout__tab(href='#scroll-tab-3') Review Abstracts
+				a.mdl-layout__tab(href='#scroll-tab-4') Report
+		.mdl-layout__drawer
+			span.mdl-layout-title Abstract Review
+		main.mdl-layout__content
+			section#scroll-tab-1.mdl-layout__tab-panel.is-active
+				.page-content
+				// Your content goes here
+			section#scroll-tab-2.mdl-layout__tab-panel
+				.page-content
+			// Your content goes here
+			section#scroll-tab-3.mdl-layout__tab-panel
+				.page-content
+			// Your content goes here
+			section#scroll-tab-4.mdl-layout__tab-panel
+				.page-content
+			// Your content goes here
+			section#scroll-tab-5.mdl-layout__tab-panel
+				.page-content
+			// Your content goes here
+			section#scroll-tab-6.mdl-layout__tab-panel
+				.page-content
+			// Your content goes here
