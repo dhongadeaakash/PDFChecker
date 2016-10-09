@@ -10,6 +10,9 @@ var userSchema = new mongoose.Schema({
   password: String,
   tokens: Array,
   type:String,
+  viewed:[String],
+  ignored:[String],
+  notseen:[String],
   profile: {  
     name: { type: String, default: '' },
   },

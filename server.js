@@ -18,14 +18,29 @@ var userController=require('./server/controllers/user')
 var pdfController=require('./server/controllers/pdf')
 
 
+
 var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
+var done=false;
+
+
 
 
 
 //Initailize the express server
 var app=express();
 
+var multer  = require('multer');
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/uploads')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+  }
+})
+
+var upload = multer({ storage: storage })
+var type = upload.single('userPDF')
 
 app.use(session({
   resave: true,
@@ -63,7 +78,7 @@ app.post('/adduser',userController.postSignUp)
 app.post('/login',userController.postSignIn)
 
 
-
+app.post('/uploadpdf', type,pdfController.postUploadPdf)
 //Starting listening for requests
-app.listen(8080);
-console.log("Server started listening at port 8080")
+app.listen(3000);
+console.log("Server started listening at port 3000")

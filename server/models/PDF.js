@@ -1,9 +1,18 @@
 var mongoose = require('mongoose');
 //pdf Schema
 var PdfSchema = new mongoose.Schema({
-  name:String,
-  location:String,
-  reviewedBy:[String],
+  title:String,
+  fieldname:String,
+  originalname:String,
+  encoding:String,
+  mimetype:String,
+  filename:String,
+  path:String,
+  desc:String,
+  reviews:[{
+  	reviewedBy:String,
+  	review:String
+  }],
   passedBy:[String]
 });
 

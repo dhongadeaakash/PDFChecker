@@ -1,1 +1,50 @@
-h4 Review abstract
+style.
+	.demo-card-wide.mdl-card {
+	width: 512px;
+	}
+	.demo-card-wide > .mdl-card__title {
+	color: #000;
+	height: 176px;
+	}
+	.demo-card-wide > .mdl-card__menu {
+	color: #000;
+	}
+.mdl-grid
+
+	each val in pdfs
+		.mdl-cell.mdl-cell--4-col.mdl-cell--4-offset
+			.demo-card-square.mdl-card.mdl-shadow--2dp
+				.mdl-card__title
+					h2.mdl-card__title-text #{val.title}
+				.mdl-card__supporting-text
+					| #{val.desc}
+				.mdl-card__actions.mdl-card--border
+					a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(href="/uploads/"+'#{val.filename}',id='embedUrl' target="_blank")
+						| View Abstract
+					button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect.mdl-button.show-modal(type='button')
+						| Review
+					// Icon button
+					a.mdl-button.mdl-js-button.mdl-button--icon.mdl-button-color--red
+						i.material-icons close
+
+					button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect.mdl-button.show-modal(type='button')
+					dialog#Viewabstractmodal.mdl-dialog
+						.mdl-dialog__content
+							
+						.mdl-dialog__actions.mdl-dialog__actions
+							button.mdl-button.close.mdl-button--colored(type='button') Submit
+					script.
+						var dialog = document.querySelector('dialog');
+						var showModalButton = document.querySelector('.show-modal');
+						if (! dialog.showModal) {
+						dialogPolyfill.registerDialog(dialog);
+						}
+						showModalButton.addEventListener('click', function() {
+						dialog.showModal();
+						});
+						dialog.querySelector('.close').addEventListener('click', function() {
+						dialog.close();
+						});
+
+		
+
