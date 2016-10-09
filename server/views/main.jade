@@ -13,24 +13,41 @@ block main
 				a.mdl-layout__tab(href='#scroll-tab-2') Rules
 				a.mdl-layout__tab(href='#scroll-tab-3') Review Abstracts
 				a.mdl-layout__tab(href='#scroll-tab-4') Report
+				if(user.type=='admin')
+					a.mdl-layout__tab(href='#scroll-tab-5') Upload pdf
+					a.mdl-layout__tab(href='#scroll-tab-6') Add users
 		.mdl-layout__drawer
 			span.mdl-layout-title Abstract Review
+			nav.mdl-navigation
+				a.mdl-navigation__link(href='/signout') Sign Out
+				a.mdl-navigation__link(href='') Link
+				a.mdl-navigation__link(href='') Link
+				a.mdl-navigation__link(href='') Link
+
 		main.mdl-layout__content
 			section#scroll-tab-1.mdl-layout__tab-panel.is-active
 				.page-content
 				// Your content goes here
+				include introduction
 			section#scroll-tab-2.mdl-layout__tab-panel
 				.page-content
-			// Your content goes here
+				// Your c
+				include rules
 			section#scroll-tab-3.mdl-layout__tab-panel
 				.page-content
-			// Your content goes here
+				// Your content goes here
+				include reviewabstract
 			section#scroll-tab-4.mdl-layout__tab-panel
 				.page-content
-			// Your content goes here
-			section#scroll-tab-5.mdl-layout__tab-panel
-				.page-content
-			// Your content goes here
-			section#scroll-tab-6.mdl-layout__tab-panel
-				.page-content
-			// Your content goes here
+				// Your content goes here
+				include report
+			if(user.type)=='admin'
+				section#scroll-tab-5.mdl-layout__tab-panel
+					.page-content
+					// Your content goes here
+					include uploadpdf
+				section#scroll-tab-6.mdl-layout__tab-panel
+					.page-content
+					// Your content goes here
+					include signup
+

@@ -1,0 +1,24 @@
+extends ./includes/layout
+block main
+	.mdl-layout.mdl-js-layout.mdl-layout--fixed-header
+			
+				main.mdl-layout__content
+					.mdl-grid
+						.mdl-layout-spacer
+						.mdl-cell.mdl-cell--4-col
+							h4.mdl-color-text--black Add User 
+							form(action='/adduser' method='post')
+								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+									input#username.mdl-textfield__input(type='text',name="userName",required='')
+									label.mdl-textfield__label(for='name') Name
+								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+									input#username.mdl-textfield__input(type='email',name='userEmail')
+									label.mdl-textfield__label(for='email') Email
+								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+									input#username.mdl-textfield__input(type='password',name='userPassword')
+									label.mdl-textfield__label(for='email') Password
+								
+								.mdl-layout-spacer
+								button#signup.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--raised.mdl-button--colored(type='submit')
+									| Add User
+						.mdl-layout-spacer

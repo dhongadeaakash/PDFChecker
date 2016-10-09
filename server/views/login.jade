@@ -3,21 +3,21 @@ block main
 	.mdl-layout.mdl-js-layout.mdl-layout--fixed-header
 			header.mdl-layout__header
 					.mdl-layout__header-row
-						span.mdl-layout-title App Title
+						span.mdl-layout-title Abstract Review
 				main.mdl-layout__content
 					.mdl-grid
 						.mdl-layout-spacer
 						.mdl-cell.mdl-cell--4-col
-							h4 Login
-							form(action='#')
+							h4.mdl-color-text--black Login
+							form(action='/login' method='post')
 								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-									input#username.mdl-textfield__input(type='text')
-									label.mdl-textfield__label(for='username') Username
+									input#username.mdl-textfield__input(type='text' name='email')
+									label.mdl-textfield__label(for='email') User Email
 								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-									input#username.mdl-textfield__input(type='Password')
-									label.mdl-textfield__label(for='username') Password
+									input#username.mdl-textfield__input(type='Password',name="password")
+									label.mdl-textfield__label(for='password') Password
 								.mdl-layout-spacer
-								button#login.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--raised.mdl-button--colored(type='button')
+								button#login.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--raised.mdl-button--colored(type='submit')
 									| Login
 
 						.mdl-layout-spacer

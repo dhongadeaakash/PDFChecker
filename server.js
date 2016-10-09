@@ -2,15 +2,43 @@
 var express=require('express');	
 //body parser is used with req variable
 var bodyParser = require('body-parser')
-//Initailize the express server
+// mangoose is middle ware
+var mongoose = require('mongoose');
+//passport for verification
+var passport=require('passport');
+var session=require('express-session');
+var MongoStore=require('connect-mongo')(session);
+
+var passportConf = require('./server/config/passport'); 
+
 
 
 var homeController = require('./server/controllers/home');
+var userController=require('./server/controllers/user')
+var pdfController=require('./server/controllers/pdf')
+
+
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 
 
 
+//Initailize the express server
 var app=express();
 
+
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: 'Any secret to encrypt the session ',
+  store: new MongoStore({ url: 'mongodb://localhost/SFITabstracts', autoReconnect: true })
+}));
+
+
+
+//Mongoose Connection with MongoDB
+mongoose.connect('mongodb://localhost/SFITabstracts');
+console.log('local mongodb opened');
 // set the view engine as jade and the Directory where all the files are stored.
 app.set('views', __dirname + '/server/views');
 app.set('view engine','jade');
@@ -20,8 +48,21 @@ app.use(bodyParser.json());// assuming POST: {"name":"foo","color":"red"} <-- JS
 app.use(bodyParser.urlencoded({extended:true}));// assuming POST: name=foo&color=red <-- URL encoding
 
 
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(function(req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
 // all routes.
 app.get('/',homeController.getIndex);
+app.get('/signout',userController.getSignOut)
+app.get('/signup',userController.getSignup)
+app.post('/adduser',userController.postSignUp)	
+app.post('/login',userController.postSignIn)
+
+
 
 //Starting listening for requests
 app.listen(8080);

@@ -1,0 +1,64 @@
+main.mdl-layout__content
+					.mdl-grid
+						.mdl-layout-spacer
+						.mdl-cell.mdl-cell--6-col
+							h4.mdl-color-text--black Upload PDF
+							form(action="/uploadpdf" method="post")
+								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+									input.mdl-textfield__input(type='text' name="name")
+									label.mdl-textfield__label Name
+								.file_input_div
+									.file_input
+										label.image_input_button.mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-js-ripple-effect.mdl-button--colored
+											i.material-icons file_upload
+											input#file_input_file.none(type='file' name="userPDF")
+									#file_input_text_div.mdl-textfield.mdl-js-textfield.textfield-demo
+										input#file_input_text.file_input_text.mdl-textfield__input(type='text', disabled='', readonly='')
+										label.mdl-textfield__label(for='file_input_text')
+								.mdl-layout-spacer
+								button#submit.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--raised.mdl-button--colored(type='submit')
+									| Submit
+								style.
+									.file_input_div {
+									margin: auto;
+									width: 250px;
+									height: 40px;
+									}
+									.file_input {
+									float: left;
+									}
+									#file_input_text_div {
+									width: 200px;
+									margin-top: -8px;
+									margin-left: 5px;
+									}
+									.none {
+									display: none;
+									}
+								script.
+									var fileInputTextDiv = document.getElementById('file_input_text_div');
+									var fileInput = document.getElementById('file_input_file');
+									var fileInputText = document.getElementById('file_input_text');
+									fileInput.addEventListener('change', changeInputText);
+									fileInput.addEventListener('change', changeState);
+									function changeInputText() {
+									var str = fileInput.value;
+									var i;
+									if (str.lastIndexOf('\\')) {i = str.lastIndexOf('\\') + 1
+									} else if (str.lastIndexOf('/')) {
+									i = str.lastIndexOf('/') + 1;
+									}
+									fileInputText.value = str.slice(i, str.length);
+									}
+									function changeState() {
+									if (fileInputText.value.length != 0) {
+									if (!fileInputTextDiv.classList.contains("is-focused")) {
+									fileInputTextDiv.classList.add('is-focused');
+									}
+									} else {
+									if (fileInputTextDiv.classList.contains("is-focused")) {
+									fileInputTextDiv.classList.remove('is-focused');
+									}
+									}
+									}
+
