@@ -21,21 +21,23 @@ style.
 				.mdl-card__actions.mdl-card--border
 					a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(href="/uploads/"+'#{val.filename}',id='embedUrl' target="_blank")
 						| View Abstract
-					button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect.mdl-button.show-modal(type='button')
+					button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect.mdl-button(type='button' class="show-modal"+'#{val._id}')
 						| Review
 					// Icon button
 					a.mdl-button.mdl-js-button.mdl-button--icon.mdl-button-color--red
 						i.material-icons close
 
-					button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect.mdl-button.show-modal(type='button')
-					dialog#Viewabstractmodal.mdl-dialog
-						.mdl-dialog__content
-							
+					dialog.Viewabstractmodal.mdl-dialog
+						.mdl-dialog__content 	
+							include reviewform
 						.mdl-dialog__actions.mdl-dialog__actions
-							button.mdl-button.close.mdl-button--colored(type='button') Submit
+							button.mdl-button.close.mdl-js-ripple-effect.mdl-button--raised.mdl-button--colored(type='button') Submit
+
 					script.
 						var dialog = document.querySelector('dialog');
-						var showModalButton = document.querySelector('.show-modal');
+						var s='.show-modal'+'#{val._id}'
+						console.log(s)
+						var showModalButton = document.querySelector(s);
 						if (! dialog.showModal) {
 						dialogPolyfill.registerDialog(dialog);
 						}
@@ -45,6 +47,7 @@ style.
 						dialog.querySelector('.close').addEventListener('click', function() {
 						dialog.close();
 						});
+						//- var dialogs = document.querySelectorAll('dialog');
+						//- var allButtons= document.querySelectorAll('.showModal')
 
-		
 
