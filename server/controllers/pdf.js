@@ -20,7 +20,7 @@ exports.postUploadPdf=function(req,res,next){
 User.update({},{$push: {"notseen": pdf._id}}, {multi: true}, function(err) { 
 console.log("PDF updated");
 });
-
+	
 
 }
 
@@ -44,13 +44,24 @@ exports.postSubmitReview=function(req,res){
 	}
 	},function(err,model){
 		
-		User.findByIdAndUpdate(req.user._id,{ $push:{"viewed":req.params.id}},function(err,model)
+		User.findByIdAndUpdate(req.user._id,{ $push:{"viewed":req.params.id},$pull:{"notseen":req.params.id}},function(err,model)
 		{
 			res.redirect('/')
 		})
 
 
+	})
+}
 
+
+exports.postIgnorePdf=function(req,res)
+{
+	Pdf.findByIdAndUpdate(req.params.id,{$push:{"passedBy":req.user._id}},function(err,model){
+
+	User.findByIdAndUpdate(req.user._id,{ $push:{"ignored":req.params.id},$pull:{"notseen":req.params.id}},function(err,model)
+		{
+			res.redirect('/')
+		})
 
 	})
 }

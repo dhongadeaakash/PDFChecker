@@ -9,7 +9,7 @@ exports.getIndex=function(req,res){
 	}
 	else
 	{
-		
+		// sending only not seen
 		 Pdf.find({'_id':{ $in: req.user.notseen}},function(err,pdf){
 		 res.render('main',{pdfs:pdf})
 

@@ -79,6 +79,7 @@ app.post('/adduser',userController.postSignUp)
 app.post('/login',userController.postSignIn)
 app.post('/submitreview/:id',pdfController.postSubmitReview)
 app.post('/uploadpdf', type,pdfController.postUploadPdf)
+app.post('/ignore/:id',pdfController.postIgnorePdf)
 //Starting listening for requests
 app.listen(3000);
 console.log("Server started listening at port 3000")
