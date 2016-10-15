@@ -11,7 +11,14 @@ var PdfSchema = new mongoose.Schema({
   desc:String,
   reviews:[{
   	reviewedBy:String,
-  	review:String
+  	Creativity:String,
+    Scientific: String,
+    Thoroughness: String,
+    Skill: String,
+    SocialImpact: String,
+    IndustrialImpact: String,
+    improvement:String,
+    remarks: String
   }],
   passedBy:[String]
 });

@@ -71,13 +71,13 @@ app.use(function(req, res, next) {
   next();
 });
 // all routes.
+
 app.get('/',homeController.getIndex);
 app.get('/signout',userController.getSignOut)
 app.get('/signup',userController.getSignup)
 app.post('/adduser',userController.postSignUp)	
 app.post('/login',userController.postSignIn)
-
-
+app.post('/submitreview/:id',pdfController.postSubmitReview)
 app.post('/uploadpdf', type,pdfController.postUploadPdf)
 //Starting listening for requests
 app.listen(3000);

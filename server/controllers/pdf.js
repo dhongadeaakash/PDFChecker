@@ -23,3 +23,34 @@ console.log("PDF updated");
 
 
 }
+
+exports.postSubmitReview=function(req,res){
+	console.log(req.params.id)
+	console.log(req.body)
+
+	Pdf.findByIdAndUpdate(req.params.id,{ $push:{
+	"reviews":{
+	"reviewedBy":req.user._id,
+  	"Creativity":req.body.Creativity,
+    "Scientific": req.body.Scientific,
+    "Thoroughness":req.body.Thoroughness,
+    "Skill":req.body.Skill ,
+    "SocialImpact":req.body.SocialImpact,
+    "IndustrialImpact":req.body.IndustrialImpact, 
+    "improvement":req.body.improvement,
+    "remarks":req.body.remarks
+
+	}
+	}
+	},function(err,model){
+		
+		User.findByIdAndUpdate(req.user._id,{ $push:{"viewed":req.params.id}},function(err,model)
+		{
+			res.redirect('/')
+		})
+
+
+
+
+	})
+}

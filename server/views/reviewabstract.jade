@@ -12,42 +12,43 @@ style.
 .mdl-grid
 
 	each val in pdfs
-		.mdl-cell.mdl-cell--4-col.mdl-cell--4-offset
-			.demo-card-square.mdl-card.mdl-shadow--2dp
-				.mdl-card__title
-					h2.mdl-card__title-text #{val.title}
-				.mdl-card__supporting-text
-					| #{val.desc}
-				.mdl-card__actions.mdl-card--border
-					a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(href="/uploads/"+'#{val.filename}',id='embedUrl' target="_blank")
-						| View Abstract
-					button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect.mdl-button(type='button' class="show-modal"+'#{val._id}')
-						| Review
-					// Icon button
-					a.mdl-button.mdl-js-button.mdl-button--icon.mdl-button-color--red
-						i.material-icons close
+		if #{val._id}  not in user.viewed
+			.mdl-cell.mdl-cell--4-col.mdl-cell--4-offset
+				.demo-card-square.mdl-card.mdl-shadow--2dp
+					.mdl-card__title
+						h2.mdl-card__title-text #{val.title}
+					.mdl-card__supporting-text
+						| #{val.desc}
+					.mdl-card__actions.mdl-card--border
+						a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(href="/uploads/"+'#{val.filename}',id='embedUrl' target="_blank")
+							| View Abstract
+						button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect.mdl-button(type='button' class="show-modal"+'#{val._id}')
+							| Review
+						// Icon button
+						a.mdl-button.mdl-js-button.mdl-button--icon.mdl-button-color--red
+							i.material-icons close
 
-					dialog.Viewabstractmodal.mdl-dialog
-						.mdl-dialog__content 	
-							include reviewform
-						.mdl-dialog__actions.mdl-dialog__actions
-							button.mdl-button.close.mdl-js-ripple-effect.mdl-button--raised.mdl-button--colored(type='button') Submit
+						dialog.Viewabstractmodal.mdl-dialog
+							.mdl-dialog__content 	
+								include reviewform
+							
 
-					script.
-						var dialog = document.querySelector('dialog');
-						var s='.show-modal'+'#{val._id}'
-						console.log(s)
-						var showModalButton = document.querySelector(s);
-						if (! dialog.showModal) {
-						dialogPolyfill.registerDialog(dialog);
-						}
-						showModalButton.addEventListener('click', function() {
-						dialog.showModal();
-						});
-						dialog.querySelector('.close').addEventListener('click', function() {
-						dialog.close();
-						});
-						//- var dialogs = document.querySelectorAll('dialog');
-						//- var allButtons= document.querySelectorAll('.showModal')
+
+						script.
+							var dialog = document.querySelector('dialog');
+							var s='.show-modal'+'#{val._id}'
+							console.log(s)
+							var showModalButton = document.querySelector(s);
+							if (! dialog.showModal) {
+							dialogPolyfill.registerDialog(dialog);
+							}
+							showModalButton.addEventListener('click', function() {
+							dialog.showModal();
+							});
+							dialog.querySelector('.close').addEventListener('click', function() {
+							dialog.close();
+							});
+							//- var dialogs = document.querySelectorAll('dialog');
+							//- var allButtons= document.querySelectorAll('.showModal')
 
 
