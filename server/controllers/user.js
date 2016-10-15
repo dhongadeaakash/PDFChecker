@@ -1,8 +1,9 @@
 var User = require('../models/User');
+var Pdf = require('../models/Pdf');
 var passport=require('passport');
 
 exports.getSignup=function(req,res){
-	if(req.user.type=='admin')
+	if(req.user.type!='admin')
 	{
 	res.render('signup')
 	}
@@ -10,25 +11,43 @@ exports.getSignup=function(req,res){
 	{
 		res.redirect('/')
 	}
+  // res.render('signup')
 }
 
 
 exports.postSignUp = function(req,res){
-        var user = new User(
+        
+var allpdfs=[]
+  Pdf.find({},function(err,pdfs){
+
+            
+
+      var user = new User(
           {
             profile:{
               name:req.body.userName,
               picture:"defaultimg.png",
-	              }, 
+                },
             email:req.body.userEmail,
-
             password:req.body.userPassword});
-            user.save(function(err,done){ 
-              res.redirect('/');
-            });
-	          
-        
+            console.log(allpdfs)
             
+          pdfs.forEach(function(pdf)
+          {
+            user.notseen.push(pdf._id)
+          });
+
+            user.save(function(err,done){ 
+            res.redirect('/')
+
+            });
+        
+
+
+
+
+
+  });
 }
 
 exports.postSignIn = function(req,res, next){

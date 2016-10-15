@@ -692,4 +692,9 @@ textarea {
   box-sizing: border-box;
 }
 
+.demo-list-two {
+  /* width: 300px; */
+  width: 100%;
+}
+
 /*# sourceMappingURL=main.css.map */

@@ -8,12 +8,51 @@ exports.getIndex=function(req,res){
 	res.render('login')
 	}
 	else
-	{
+	{   	var notseenpdfs=[]
+		 	var reviewed=[]
+		 	var ignored=[]
 		// sending only not seen
-		 Pdf.find({'_id':{ $in: req.user.notseen}},function(err,pdf){
-		 res.render('main',{pdfs:pdf})
+		 
+		 
+
+		 Pdf.find({},function(err,allpdfs){
+		 	
+
+		 	allpdfs.forEach(function(pdf){
+		 		// console.log(typeof req.user.viewed)
+		 		var index=req.user.viewed.indexOf(pdf._id)
+		 		
+		 		if(index!=-1)
+		 		{	
+		 			reviewed.push(pdf)
+		 		}
+
+		 		var index=req.user.notseen.indexOf(pdf._id)
+		 		
+		 		if(index!=-1)
+		 		{	
+		 			notseenpdfs.push(pdf)
+		 		}
+
+		 		var index=req.user.ignored.indexOf(pdf._id)
+		 		if(index!=-1)
+		 		{	
+		 			ignored.push(pdf)
+		 		}
+
+
+		 	});
+
+			res.render('main',{pdfs:notseenpdfs,reviewed:reviewed,ignored:ignored})
 
 		 });
+
+
+
+
+		 
+
+		 
 
 					
 		 			// Pdf.find({_id:user[0].notseen[i]},function(err,pdf){

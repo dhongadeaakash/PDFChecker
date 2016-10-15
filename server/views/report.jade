@@ -1,0 +1,83 @@
+style.
+	.demo-list-two {
+	width: 100%;
+	}
+.mdl-grid
+	.mdl-cell.mdl-cell--6-col.mdl-cell--2-offset
+		ul.demo-list-two.mdl-list
+			//- li.mdl-list__item.mdl-list__item--two-line
+			//- 	.mdl-list__item-primary-content
+			//- 		i.material-icons.mdl-list__item-avatar note
+			//- 		span Project Title
+			//- 		span.mdl-list__item-sub-title(style=" word-wrap: break-word;") Project Description
+
+			//- 	.mdl-list__item-secondary-content
+			//- 		.mdl-list__item-secondary-info Not Seen
+			//- 		a.mdl-list__item-secondary-action(href='#')
+			//- 			i.material-icons done
+			//- 	.mdl-list__item-secondary-content
+			//- 		.mdl-list__item-secondary-info Ignored
+			//- 		a.mdl-list__item-secondary-action(href='#')
+			//- 			i.material-icons done
+			//- 	.mdl-list__item-secondary-content
+			//- 		.mdl-list__item-secondary-info Reviewed
+			//- 		a.mdl-list__item-secondary-action(href='#')
+			//- 			i.material-icons done
+
+			each val in pdfs
+				li.mdl-list__item.mdl-list__item--two-line
+					.mdl-list__item-primary-content
+						i.material-icons.mdl-list__item-avatar note
+						span #{val.title}
+						span.mdl-list__item-sub-title(style=" word-wrap: break-word;") #{val.desc}
+
+					.mdl-list__item-secondary-content
+						.mdl-list__item-secondary-info Not Seen
+						a.mdl-list__item-secondary-action(href='#')
+							i.material-icons.mdl-color-text--green done
+					.mdl-list__item-secondary-content
+						.mdl-list__item-secondary-info Ignored
+						a.mdl-list__item-secondary-action(href='#')
+							i.material-icons.mdl-color-text--red close
+					.mdl-list__item-secondary-content
+						.mdl-list__item-secondary-info Reviewed
+						a.mdl-list__item-secondary-action(href='#')
+							i.material-icons.mdl-color-text--red close
+			each val in ignored
+				li.mdl-list__item.mdl-list__item--two-line
+					.mdl-list__item-primary-content
+						i.material-icons.mdl-list__item-avatar note
+						span #{val.title}
+						span.mdl-list__item-sub-title(style=" word-wrap: break-word;") #{val.desc}
+
+					.mdl-list__item-secondary-content
+						.mdl-list__item-secondary-info Not Seen
+						a.mdl-list__item-secondary-action(href='#')
+							i.material-icons.mdl-color-text--red close
+					.mdl-list__item-secondary-content
+						.mdl-list__item-secondary-info Ignored
+						a.mdl-list__item-secondary-action(href='#')
+							i.material-icons.mdl-color-text--green done
+					.mdl-list__item-secondary-content
+						.mdl-list__item-secondary-info Reviewed
+						a.mdl-list__item-secondary-action(href='#')
+							i.material-icons.mdl-color-text--red close
+			each val in reviewed
+				li.mdl-list__item.mdl-list__item--two-line
+					.mdl-list__item-primary-content
+						i.material-icons.mdl-list__item-avatar note
+						span #{val.title}
+						span.mdl-list__item-sub-title(style=" word-wrap: break-word;") #{val.desc}
+
+					.mdl-list__item-secondary-content
+						.mdl-list__item-secondary-info Not Seen
+						a.mdl-list__item-secondary-action(href='#')
+							i.material-icons.mdl-color-text--red close
+					.mdl-list__item-secondary-content
+						.mdl-list__item-secondary-info Ignored
+						a.mdl-list__item-secondary-action(href='#')
+							i.material-icons.mdl-color-text--red close
+					.mdl-list__item-secondary-content
+						.mdl-list__item-secondary-info Reviewed
+						a.mdl-list__item-secondary-action(href='#')
+							i.material-icons.mdl-color-text--green done
