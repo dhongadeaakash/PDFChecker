@@ -38,7 +38,7 @@ var storage = multer.diskStorage({
     filename: function (req, file, cb) {
         cb(null, file.originalname)
   }
-})
+});
 
 var upload = multer({ storage: storage })
 var type = upload.single('userPDF')
@@ -50,6 +50,7 @@ mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + db_name;
 //take advantage of openshift env vars when available:
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
   mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + db_name;
+}
 
 app.use(session({
   resave: true,
