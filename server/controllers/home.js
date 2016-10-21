@@ -1,4 +1,4 @@
-var Pdf = require('../models/Pdf');
+var Pdf = require('../models/PDF');
 var User = require('../models/User')
 var pdflist=[]
 exports.getIndex=function(req,res){
