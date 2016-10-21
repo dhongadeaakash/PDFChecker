@@ -5,7 +5,6 @@ style.
 .mdl-grid
 	.mdl-cell.mdl-cell--6-col.mdl-cell--2-offset
 		ul.demo-list-two.mdl-list
-			
 				each val in reviewed
 					li.mdl-list__item.mdl-list__item--two-line
 						.mdl-list__item-primary-content
@@ -26,9 +25,15 @@ style.
 						.mdl-list__item-secondary-content
 							a.mdl-list__item-secondary-action(href='/generatereport/'+val._id)
 								i.material-icons.mdl-color-text--red assessment
+						//- .mdl-list__item-secondary-content
+						//- 	a.mdl-list__item-secondary-action(href='/downloadreport/'+val._id)
+						//- 		i.material-icons.mdl-color-text--grey file_download
 						.mdl-list__item-secondary-content
-							a.mdl-list__item-secondary-action(href='/downloadreport/'+val._id)
+							a.mdl-list__item-secondary-action(href="/downloadreport/"+val._id)
 								i.material-icons.mdl-color-text--grey file_download
+							//- .mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored(onClick="docdownloader()")
+								i.material-icons file_download
+
 				each val in ignored
 					li.mdl-list__item.mdl-list__item--two-line
 						.mdl-list__item-primary-content
@@ -50,7 +55,7 @@ style.
 							a.mdl-list__item-secondary-action(href='/generatereport/'+val._id)
 								i.material-icons.mdl-color-text--red assessment
 						.mdl-list__item-secondary-content
-							a.mdl-list__item-secondary-action(href='/downloadreport/'+val._id)
+							.mdl-list__item-secondary-action(onClick="docdownloader()")
 								i.material-icons.mdl-color-text--grey file_download
 				each val in pdfs
 					li.mdl-list__item.mdl-list__item--two-line
@@ -73,7 +78,6 @@ style.
 							a.mdl-list__item-secondary-action(href='/generatereport/'+val._id)
 								i.material-icons.mdl-color-text--red assessment
 						.mdl-list__item-secondary-content
-							a.mdl-list__item-secondary-action(href='/downloadreport/'+val._id)
+							.mdl-list__item-secondary-action(onClick="docdownloader()")
 								i.material-icons.mdl-color-text--grey file_download
 
-				
