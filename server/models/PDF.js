@@ -9,6 +9,8 @@ var PdfSchema = new mongoose.Schema({
   filename:String,
   path:String,
   desc:String,
+  dept:String,
+  level:String,
   reviews:[{
   	reviewedBy:String,
   	Creativity:String,

@@ -5,43 +5,43 @@ form(action='/submitreview/'+val._id,method='post')
 			.mdl-textfield.mdl-js-textfield
 				label.mdl-textfield__label(for='Creativity') 
 				| Creativity & Originality
-				input.mdl-slider.mdl-js-slider(type='range', min='0', max='100', value='0', tabindex='0' name='Creativity')
+				input.mdl-slider.mdl-js-slider(type='range', min='0', max='100', value='0', tabindex='0' name='Creativity' required)
 		.mdl-cell.mdl-cell--6-col
 			.mdl-textfield.mdl-js-textfield
 				label.mdl-textfield__label(for='Scientific') 
 				| Scientific Thought & Engineering Goal
-				input.mdl-slider.mdl-js-slider(type='range', min='0', max='100', value='0', tabindex='0' name='Scientific')
+				input.mdl-slider.mdl-js-slider(type='range', min='0', max='100', value='0', tabindex='0' name='Scientific' required)
 	.mdl-grid
 		.mdl-cell.mdl-cell--6-col
 			.mdl-textfield.mdl-js-textfield
 				label.mdl-textfield__label(for='Thoroughness') 
 				| Thoroughness
-				input.mdl-slider.mdl-js-slider(type='range', min='0', max='100', value='0', tabindex='0' name='Thoroughness')
+				input.mdl-slider.mdl-js-slider(type='range', min='0', max='100', value='0', tabindex='0' name='Thoroughness' required)
 		.mdl-cell.mdl-cell--6-col
 			.mdl-textfield.mdl-js-textfield
 				label.mdl-textfield__label(for='Skill') 
 				| Skill
-				input.mdl-slider.mdl-js-slider(type='range', min='0', max='100', value='0', tabindex='0' name='Skill')
+				input.mdl-slider.mdl-js-slider(type='range', min='0', max='100', value='0', tabindex='0' name='Skill' required)
 	.mdl-grid
 		.mdl-cell.mdl-cell--6-col
 			.mdl-textfield.mdl-js-textfield
 				label.mdl-textfield__label(for='SocialImpact') 
 				| Social Impact
-				input.mdl-slider.mdl-js-slider(type='range', min='0', max='100', value='0', tabindex='0' name='SocialImpact')
+				input.mdl-slider.mdl-js-slider(type='range', min='0', max='100', value='0', tabindex='0' name='SocialImpact' required)
 		.mdl-cell.mdl-cell--6-col
 			.mdl-textfield.mdl-js-textfield
 				label.mdl-textfield__label(for='IndustrialImpact') 
 				| Industrial Impact
-				input.mdl-slider.mdl-js-slider(type='range', min='0', max='100', value='0', tabindex='0' name='IndustrialImpact')
+				input.mdl-slider.mdl-js-slider(type='range', min='0', max='100', value='0', tabindex='0' name='IndustrialImpact' required)
 	.mdl-grid
 		.mdl-cell.mdl-cell--6-col
 			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
 				label.mdl-textfield__label(for='improve') What can be improved?
-				textarea#sample5.mdl-textfield__input(type='text', rows='6',cols='12',name="improvement")
+				textarea#sample5.mdl-textfield__input(type='text', rows='6',cols='12',name="improvement" required)
 		.mdl-cell.mdl-cell--6-col
 			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
 				label.mdl-textfield__label(for='improve') Remarks
-				textarea#sample5.mdl-textfield__input(type='text', rows='6',cols='12',name="remarks")
+				textarea#sample5.mdl-textfield__input(type='text', rows='6',cols='12',name="remarks" required)
 	.mdl-dialog__actions.mdl-dialog__actions
 		button#submit.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--raised.mdl-button--colored.close(type='submit') Submit
 

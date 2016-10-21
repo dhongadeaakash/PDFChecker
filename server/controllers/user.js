@@ -3,6 +3,7 @@ var Pdf = require('../models/Pdf');
 var passport=require('passport');
 
 exports.getSignup=function(req,res){
+if(req.user){
 	if(req.user.type!='admin')
 	{
 	res.render('signup')
@@ -11,7 +12,12 @@ exports.getSignup=function(req,res){
 	{
 		res.redirect('/')
 	}
+}
+else
+{
+  res.redirect('/')
   // res.render('signup')
+}
 }
 
 
