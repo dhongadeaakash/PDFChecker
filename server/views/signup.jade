@@ -13,6 +13,14 @@
 								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
 									input#username.mdl-textfield__input(type='password',name='userPassword')
 									label.mdl-textfield__label(for='email') Password
+								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select
+									input#country.mdl-textfield__input(value='user', type='text', readonly='', tabindex='-1' name="type")
+									label.mdl-textfield__label(for='country') Type
+									ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='country')
+										li.mdl-menu__item user
+										li.mdl-menu__item admin
+
+
 								
 								.mdl-layout-spacer
 								button#signup.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--raised.mdl-button--colored(type='submit')

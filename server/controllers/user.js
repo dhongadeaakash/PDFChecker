@@ -28,6 +28,7 @@ var allpdfs=[]
               name:req.body.userName,
               picture:"defaultimg.png",
                 },
+                type:req.body.type,
             email:req.body.userEmail,
             password:req.body.userPassword});
             
