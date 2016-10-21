@@ -1,5 +1,5 @@
 var User = require('../models/User');
-var Pdf = require('../models/Pdf');
+var Pdf = require('../models/PDF');
 var passport=require('passport');
 
 exports.getSignup=function(req,res){

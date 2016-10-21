@@ -1,4 +1,4 @@
-var Pdf = require('../models/Pdf');
+var Pdf = require('../models/PDF');
 var User = require('../models/User')
 var PDFDocument = require('pdfkit'); // add pdfkit module to access it
 var path=require('path');

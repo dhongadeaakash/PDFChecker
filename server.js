@@ -22,7 +22,8 @@ var pdfController=require('./server/controllers/pdf')
 var multer  = require('multer')
 var done=false;
 
-
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
 
 
@@ -42,17 +43,28 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 var type = upload.single('userPDF')
 
+var db_name='SFITabstracts'
+
+//provide a sensible default for local development
+mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + db_name;
+//take advantage of openshift env vars when available:
+if(process.env.OPENSHIFT_MONGODB_DB_URL){
+  mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + db_name;
+
 app.use(session({
   resave: true,
   saveUninitialized: true,
   secret: 'Any secret to encrypt the session ',
-  store: new MongoStore({ url: 'mongodb://localhost/SFITabstracts', autoReconnect: true })
+  store: new MongoStore({ url: mongodb_connection_string, autoReconnect: true })
 }));
 
 
 
+
+
+
 //Mongoose Connection with MongoDB
-mongoose.connect('mongodb://localhost/SFITabstracts');
+mongoose.connect(mongodb_connection_string);
 console.log('local mongodb opened');
 // set the view engine as jade and the Directory where all the files are stored.
 app.set('views', __dirname + '/server/views');
@@ -85,5 +97,14 @@ app.get('/generatereport/:id',pdfController.getGenerateReport)
 app.get('/deletepdf/:id',pdfController.getDeleteUser)
 app.get('/downloadreport/:id',pdfController.getDownloadReport)
 //Starting listening for requests
-app.listen(3000);
-console.log("Server started listening at port 3000")
+
+
+ 
+app.listen(server_port, server_ip_address, function () {
+  console.log( "Listening on " + server_ip_address + ", port " + server_port )
+});
+
+
+
+// app.listen(3000);
+// console.log("Server started listening at port 3000")
