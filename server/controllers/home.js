@@ -11,6 +11,7 @@ exports.getIndex=function(req,res){
 	{   	var notseenpdfs=[]
 		 	var reviewed=[]
 		 	var ignored=[]
+		 	var all=[]
 		// sending only not seen
 		 
 		 
@@ -43,6 +44,10 @@ exports.getIndex=function(req,res){
 
 		 	});
 
+		 	// all.concat(notseenpdfs);
+		 	// all.concat(reviewed);
+		 	// all.concat(ignored);
+		 
 			res.render('main',{pdfs:notseenpdfs,reviewed:reviewed,ignored:ignored})
 
 		 });

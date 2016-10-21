@@ -18,7 +18,8 @@ var PdfSchema = new mongoose.Schema({
     SocialImpact: String,
     IndustrialImpact: String,
     improvement:String,
-    remarks: String
+    remarks: String,
+    reviewername:String
   }],
   passedBy:[String]
 });

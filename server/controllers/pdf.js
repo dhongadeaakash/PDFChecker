@@ -37,8 +37,8 @@ exports.postSubmitReview=function(req,res){
     "SocialImpact":req.body.SocialImpact,
     "IndustrialImpact":req.body.IndustrialImpact, 
     "improvement":req.body.improvement,
-    "remarks":req.body.remarks
-
+    "remarks":req.body.remarks,
+    "reviewername":req.user.profile.name
 	}
 	}
 	},function(err,model){
@@ -64,3 +64,26 @@ exports.postIgnorePdf=function(req,res)
 
 	})
 }
+exports.getGenerateReport=function(req,res)
+{
+	Pdf.findById(req.params.id,function(err,pdf){
+		// User.find({'_id': { $in: pdf.invites}},function(err,events)
+		// for review in pdf.re
+		
+		res.render('generatereport',{pdf:pdf})
+		
+	});
+}
+
+exports.getDeleteUser=function(req,res)
+{
+	// console.log(req.params.id)
+	Pdf.remove({ _id:req.params.id }, function (err) {
+
+            res.redirect('/');
+        });
+
+}
+
+
+ // {$push: {"friends": newUser["_id"]}},

@@ -1,0 +1,79 @@
+style.
+	.demo-list-two {
+	width: 100%;
+	}
+.mdl-grid
+	.mdl-cell.mdl-cell--6-col.mdl-cell--2-offset
+		ul.demo-list-two.mdl-list
+			
+				each val in reviewed
+					li.mdl-list__item.mdl-list__item--two-line
+						.mdl-list__item-primary-content
+							i.material-icons.mdl-list__item-avatar note
+							span #{val.title}
+							//- span.mdl-list__item-sub-title(style=" word-wrap: break-word;") #{val.desc}
+
+						.mdl-list__item-secondary-content
+							.mdl-list__item-secondary-info Number of Views
+							.mdl-list__item-secondary-action(href='#')
+								if(val.reviews)
+									.mdl-color-text--grey  #{val.reviews.length}
+								else
+									.mdl-color-text--grey  0
+						.mdl-list__item-secondary-content
+							a.mdl-list__item-secondary-action(href='/deletepdf/'+val._id)
+								i.material-icons delete
+						.mdl-list__item-secondary-content
+							a.mdl-list__item-secondary-action(href='/generatereport/'+val._id)
+								i.material-icons.mdl-color-text--red assessment
+						.mdl-list__item-secondary-content
+							a.mdl-list__item-secondary-action(href='/downloadreport/'+val._id)
+								i.material-icons.mdl-color-text--grey file_download
+				each val in ignored
+					li.mdl-list__item.mdl-list__item--two-line
+						.mdl-list__item-primary-content
+							i.material-icons.mdl-list__item-avatar note
+							span #{val.title}
+							//- span.mdl-list__item-sub-title(style=" word-wrap: break-word;") #{val.desc}
+
+						.mdl-list__item-secondary-content
+							.mdl-list__item-secondary-info Number of Views
+							.mdl-list__item-secondary-action(href='#')
+								if(val.reviews)
+									.mdl-color-text--grey  #{val.reviews.length}
+								else
+									.mdl-color-text--grey  0
+						.mdl-list__item-secondary-content
+							a.mdl-list__item-secondary-action(href='/deletepdf/'+val._id)
+								i.material-icons delete
+						.mdl-list__item-secondary-content
+							a.mdl-list__item-secondary-action(href='/generatereport/'+val._id)
+								i.material-icons.mdl-color-text--red assessment
+						.mdl-list__item-secondary-content
+							a.mdl-list__item-secondary-action(href='/downloadreport/'+val._id)
+								i.material-icons.mdl-color-text--grey file_download
+				each val in pdfs
+					li.mdl-list__item.mdl-list__item--two-line
+						.mdl-list__item-primary-content
+							i.material-icons.mdl-list__item-avatar note
+							span #{val.title}
+							//- span.mdl-list__item-sub-title(style=" word-wrap: break-word;") #{val.desc}
+
+						.mdl-list__item-secondary-content
+							.mdl-list__item-secondary-info Number of Views
+							.mdl-list__item-secondary-action(href='#')
+								if(val.reviews)
+									.mdl-color-text--grey  #{val.reviews.length}
+								else
+									.mdl-color-text--grey  0
+						.mdl-list__item-secondary-content
+							a.mdl-list__item-secondary-action(href='/deletepdf/'+val._id)
+								i.material-icons delete
+						.mdl-list__item-secondary-content
+							a.mdl-list__item-secondary-action(href='/generatereport/'+val._id)
+								i.material-icons.mdl-color-text--red assessment
+						.mdl-list__item-secondary-content
+							a.mdl-list__item-secondary-action(href='/downloadreport/'+val._id)
+								i.material-icons.mdl-color-text--grey file_download
+
+				

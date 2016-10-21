@@ -30,7 +30,7 @@ var allpdfs=[]
                 },
             email:req.body.userEmail,
             password:req.body.userPassword});
-            console.log(allpdfs)
+            
             
           pdfs.forEach(function(pdf)
           {
@@ -68,4 +68,32 @@ exports.postSignIn = function(req,res, next){
 exports.getSignOut = function(req,res, next){
   req.logout();
   res.redirect('/');
+}
+exports.getAdminInit=function(req,res)
+{
+
+if(req.params.pass="qwertyuiop@1234567890"){
+  console.log("Admin Initization.")
+         var user = new User(
+                {
+                  profile:{
+                    name:'admin',
+                    picture:"defaultimg.png",
+                      },
+                  email:'admin@sfitengg.org',
+                  type:'admin',
+                  password:'admin'});
+                  // console.log(allpdfs)
+                  user.save(function(err,done){ 
+                  res.redirect('/')
+
+                  });
+
+}
+else
+{
+console.log("password wrong cannot init.")
+}
+
+        
 }

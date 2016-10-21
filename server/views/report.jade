@@ -29,7 +29,7 @@ style.
 					.mdl-list__item-primary-content
 						i.material-icons.mdl-list__item-avatar note
 						span #{val.title}
-						span.mdl-list__item-sub-title(style=" word-wrap: break-word;") #{val.desc}
+						//- .mdl-list__item-sub-title(style=" word-wrap: break-word;") #{val.desc}
 
 					.mdl-list__item-secondary-content
 						.mdl-list__item-secondary-info Not Seen
@@ -38,22 +38,22 @@ style.
 					.mdl-list__item-secondary-content
 						.mdl-list__item-secondary-info Ignored
 						a.mdl-list__item-secondary-action(href='#')
-							i.material-icons.mdl-color-text--red close
+							i.material-icons.mdl-color-text--red remove
 					.mdl-list__item-secondary-content
 						.mdl-list__item-secondary-info Reviewed
 						a.mdl-list__item-secondary-action(href='#')
-							i.material-icons.mdl-color-text--red close
+							i.material-icons.mdl-color-text--red remove
 			each val in ignored
 				li.mdl-list__item.mdl-list__item--two-line
 					.mdl-list__item-primary-content
 						i.material-icons.mdl-list__item-avatar note
 						span #{val.title}
-						span.mdl-list__item-sub-title(style=" word-wrap: break-word;") #{val.desc}
+						//- span.mdl-list__item-sub-title(style=" word-wrap: break-word;") #{val.desc}
 
 					.mdl-list__item-secondary-content
 						.mdl-list__item-secondary-info Not Seen
 						a.mdl-list__item-secondary-action(href='#')
-							i.material-icons.mdl-color-text--red close
+							i.material-icons.mdl-color-text--red remove
 					.mdl-list__item-secondary-content
 						.mdl-list__item-secondary-info Ignored
 						a.mdl-list__item-secondary-action(href='#')
@@ -61,22 +61,22 @@ style.
 					.mdl-list__item-secondary-content
 						.mdl-list__item-secondary-info Reviewed
 						a.mdl-list__item-secondary-action(href='#')
-							i.material-icons.mdl-color-text--red close
+							i.material-icons.mdl-color-text--red remove
 			each val in reviewed
 				li.mdl-list__item.mdl-list__item--two-line
 					.mdl-list__item-primary-content
 						i.material-icons.mdl-list__item-avatar note
 						span #{val.title}
-						span.mdl-list__item-sub-title(style=" word-wrap: break-word;") #{val.desc}
+						//- span.mdl-list__item-sub-title(style=" word-wrap: break-word;") #{val.desc}
 
 					.mdl-list__item-secondary-content
 						.mdl-list__item-secondary-info Not Seen
 						a.mdl-list__item-secondary-action(href='#')
-							i.material-icons.mdl-color-text--red close
+							i.material-icons.mdl-color-text--red remove
 					.mdl-list__item-secondary-content
 						.mdl-list__item-secondary-info Ignored
 						a.mdl-list__item-secondary-action(href='#')
-							i.material-icons.mdl-color-text--red close
+							i.material-icons.mdl-color-text--red remove
 					.mdl-list__item-secondary-content
 						.mdl-list__item-secondary-info Reviewed
 						a.mdl-list__item-secondary-action(href='#')

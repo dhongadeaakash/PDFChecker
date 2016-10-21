@@ -1,0 +1,47 @@
+extends ./includes/layout
+block main
+	// Simple header with scrollable tabs.
+	.mdl-layout.mdl-js-layout.mdl-layout--fixed-header
+		header.mdl-layout__header.mdl-color--blue
+			.mdl-layout-icon
+			.mdl-layout__header-row
+				// Title
+				span.mdl-layout-title Reviews for #{pdf.title}
+				// Tabs	
+		if(pdf.reviews.length==0)
+			h4 None have reviewed till now
+		each val in pdf.reviews
+			.mdl-grid
+				.snippet-demo
+					.snippet-demo-container.demo-data-table.demo-data-table__data-table
+						table.mdl-data-table.mdl-js-data-table.mdl-data-table--selectable.mdl-shadow--2dp.is-upgraded(data-upgraded=',MaterialDataTable')
+							h4 Reviewed By #{val.reviewername}
+							thead
+								tr
+									th.mdl-data-table__cell--non-numeric  Creativity
+									th.mdl-data-table__cell--non-numeric 	Scientific
+									th.mdl-data-table__cell--non-numeric 	Thoroughness
+									th.mdl-data-table__cell--non-numeric 	Skill
+									th.mdl-data-table__cell--non-numeric 	Social Impact
+									th.mdl-data-table__cell--non-numeric 	Industrial Impact
+							tbody
+								tr
+									td.mdl-color-text--black(style="text-align: center;") #{val.Creativity}
+									td.mdl-color-text--black(style="text-align: center;") #{val.Scientific}
+									td.mdl-color-text--black(style="text-align: center;") #{val.Thoroughness}
+									td.mdl-color-text--black(style="text-align: center;") #{val.Skill}
+									td.mdl-color-text--black(style="text-align: center;") #{val.SocialImpact}
+									td.mdl-color-text--black(style="text-align: center;") #{val.IndustrialImpact }
+									
+								tr
+									th.mdl-data-table__cell--non-numeric(colspan=6) Improvement 
+										br
+										.mdl-data-table__cell--non-numeric.mdl-color-text--black #{val.improvement}
+								tr
+									th.mdl-data-table__cell--non-numeric(colspan=6) Remarks
+										br
+										.mdl-data-table__cell--non-numeric.mdl-color-text--black #{val.remarks}
+
+		
+		a.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored(href='/')
+			i.material-icons arrow_back

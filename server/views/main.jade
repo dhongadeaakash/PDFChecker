@@ -16,6 +16,7 @@ block main
 				if(user.type=='admin')
 					a.mdl-layout__tab(href='#scroll-tab-5') Upload pdf
 					a.mdl-layout__tab(href='#scroll-tab-6') Add users
+					a.mdl-layout__tab(href='#scroll-tab-7') Admin Report
 		.mdl-layout__drawer
 			span.mdl-layout-title Abstract Review
 			nav.mdl-navigation
@@ -50,4 +51,8 @@ block main
 					.page-content
 						// Your content goes here
 						include signup
+				section#scroll-tab-7.mdl-layout__tab-panel
+					.page-content
+						// Your content goes here
+						include adminreport
 
