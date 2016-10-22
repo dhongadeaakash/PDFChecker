@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 var passport=require('passport');
 var session=require('express-session');
 var MongoStore=require('connect-mongo')(session);
+var morgan  = require('morgan');
 
 var passportConf = require('./server/config/passport'); 
 
@@ -22,13 +23,11 @@ var pdfController=require('./server/controllers/pdf')
 var multer  = require('multer')
 var done=false;
 
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
-
 
 
 //Initailize the express server
 var app=express();
+app.use(morgan('combined'))
 
 var multer  = require('multer');
 var storage = multer.diskStorage({
@@ -43,31 +42,53 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 var type = upload.single('userPDF')
 
-var db_name='SFITabstracts'
 
-//provide a sensible default for local development
-mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + db_name;
-//take advantage of openshift env vars when available:
-if(process.env.OPENSHIFT_MONGODB_DB_URL){
-  mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + db_name;
-}
+
+
+
+
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
+    mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
+    mongoURLLabel = "";
+
+if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
+  var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
+      mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
+      mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
+      mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
+      mongoPassword = process.env[mongoServiceName + '_PASSWORD']
+      mongoUser = process.env[mongoServiceName + '_USER'];
+
+  if (mongoHost && mongoPort && mongoDatabase) {
+    mongoURLLabel = mongoURL = 'mongodb://';
+    if (mongoUser && mongoPassword) {
+      mongoURL += mongoUser + ':' + mongoPassword + '@';
+    }
+    // Provide UI label that excludes user id and pw
+    mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
+    mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
+
+  }
+
+
+
+//Mongoose Connection with MongoDB
+mongoose.connect(mongoURL);
+console.log('local mongodb opened');
+// set the view engine as jade and the Directory where all the files are stored.
+
 
 app.use(session({
   resave: true,
   saveUninitialized: true,
   secret: 'Any secret to encrypt the session ',
-  store: new MongoStore({ url: mongodb_connection_string, autoReconnect: true })
+  store: new MongoStore({ url: mongoURL, autoReconnect: true })
 }));
 
 
 
 
-
-
-//Mongoose Connection with MongoDB
-mongoose.connect(mongodb_connection_string);
-console.log('local mongodb opened');
-// set the view engine as jade and the Directory where all the files are stored.
 app.set('views', __dirname + '/server/views');
 app.set('view engine','jade');
 //app.use is used to use middlewares
@@ -99,11 +120,15 @@ app.get('/deletepdf/:id',pdfController.getDeleteUser)
 app.get('/downloadreport/:id',pdfController.getDownloadReport)
 //Starting listening for requests
 
+app.use(function(err, req, res, next){
+  console.error(err.stack);
+  res.status(500).send('Something bad happened!');
+});
 
  
-app.listen(server_port, server_ip_address, function () {
-  console.log( "Listening on " + server_ip_address + ", port " + server_port )
-});
+app.listen(port, ip);
+console.log('Server running on http://%s:%s', ip, port);
+
 
 
 
