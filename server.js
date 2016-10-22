@@ -79,6 +79,7 @@ mongoose.connect(mongoURL);
 console.log('local mongodb opened');
 // set the view engine as jade and the Directory where all the files are stored.
 
+console.log(mongoURL)
 
 app.use(session({
   resave: true,
