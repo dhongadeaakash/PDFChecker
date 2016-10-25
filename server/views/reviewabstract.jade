@@ -24,7 +24,8 @@ style.
 
 						button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect.mdl-button(type='button' class="show-modal"+'#{val._id}')
 							| Review
-						// Icon button
+						
+						span Review Count : #{val.reviews.length}
 						form(action='/ignore/'+val.id, method='post')
 							button.mdl-button.mdl-js-button.mdl-button--icon.mdl-button-color--red(type='submit') 
 								i.material-icons close

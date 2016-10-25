@@ -8,10 +8,15 @@ var mongoose = require('mongoose');
 var passport=require('passport');
 var session=require('express-session');
 var MongoStore=require('connect-mongo')(session);
-var morgan  = require('morgan');
+var fs = require('fs')
+var morgan = require('morgan')
+var path = require('path')
+var FileStreamRotator = require('file-stream-rotator')
+var logDirectory = path.join(__dirname, 'log')
+
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory)
 
 var passportConf = require('./server/config/passport'); 
-
 
 
 var homeController = require('./server/controllers/home');
@@ -19,15 +24,24 @@ var userController=require('./server/controllers/user')
 var pdfController=require('./server/controllers/pdf')
 
 
+var accessLogStream = FileStreamRotator.getStream({
+  date_format: 'YYYYMMDD',
+  filename: path.join(logDirectory, 'access-%DATE%.log'),
+  frequency: 'daily',
+  verbose: false
+});
+
+
 
 var multer  = require('multer')
 var done=false;
 
-
-
 //Initailize the express server
 var app=express();
-app.use(morgan('combined'))
+
+
+app.use(morgan('combined', {stream: accessLogStream}))
+
 
 var multer  = require('multer');
 var storage = multer.diskStorage({
@@ -44,7 +58,7 @@ var type = upload.single('userPDF')
 
 
 
- mongoURL="mongodb://localhost:27017/SFITAbstracts"
+ mongoURL="mongodb://localhost:27017/SFITAbstracts123"
 
 //Mongoose Connection with MongoDB
 mongoose.connect(mongoURL);
