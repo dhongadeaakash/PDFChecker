@@ -87,7 +87,7 @@ if(req.params.pass="qwertyuiop@1234567890"){
                     name:'admin',
                     picture:"defaultimg.png",
                       },
-                  email:'admin@sfitengg.org',
+                  email:'aakashdhongade@sfitengg.org',
                   type:'admin',
                   password:'admin'});
                   // console.log(allpdfs)

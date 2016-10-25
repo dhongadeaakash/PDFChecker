@@ -55,7 +55,7 @@ style.
 							a.mdl-list__item-secondary-action(href='/generatereport/'+val._id)
 								i.material-icons.mdl-color-text--red assessment
 						.mdl-list__item-secondary-content
-							.mdl-list__item-secondary-action(onClick="docdownloader()")
+							a.mdl-list__item-secondary-action(href="/downloadreport/"+val._id)
 								i.material-icons.mdl-color-text--grey file_download
 				each val in pdfs
 					li.mdl-list__item.mdl-list__item--two-line
@@ -78,6 +78,6 @@ style.
 							a.mdl-list__item-secondary-action(href='/generatereport/'+val._id)
 								i.material-icons.mdl-color-text--red assessment
 						.mdl-list__item-secondary-content
-							.mdl-list__item-secondary-action(onClick="docdownloader()")
+							a.mdl-list__item-secondary-action(href="/downloadreport/"+val._id)
 								i.material-icons.mdl-color-text--grey file_download
 

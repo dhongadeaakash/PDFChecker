@@ -98,6 +98,7 @@ exports.getDeleteUser=function(req,res)
 }
 exports.getDownloadReport=function(req,res)
 {
+console.log("In download Report")
 var lorem="\n\n\n\n\n\n"
 var doc = new PDFDocument();
 
@@ -124,10 +125,6 @@ doc.text('', 100, 30)
      indent: 30,
      ellipsis: true
    });
-
-
-
-
 
 doc.end();
 })

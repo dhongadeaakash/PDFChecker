@@ -12,7 +12,7 @@ html.no-js(lang='')
     script(src='/js/modernizr-2.8.3.min.js')
     
 
-    //- link(rel='stylesheet',href='/vendor/material-design-lite/material.min.css')
+    link(rel='stylesheet',href='/vendor/material-design-lite/material.min.css')
     link(rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.blue-light_blue.min.css")
    
     script(src='/vendor/material-design-lite/material.min.js')
@@ -31,17 +31,13 @@ html.no-js(lang='')
     block main
     include ../partials/footer
     
-    script(src='/vendor/jquery/dist/jquery.min.js')
-    script(src='/vendor/jquery.gdocviewer/jquery.gdocsviewer.min.js')
+    //- script(src='/vendor/jquery/dist/jquery.min.js')
+    script(src='https://code.jquery.com/jquery-3.1.1.min.js', integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=', crossorigin='anonymous')
+
     script.
       window.jQuery || document.write('<script src="/vendor/jquery/dist/jquery.min.js"><\\/script>')
     script(src='js/plugins.js')
     script(src='js/main.js')
-    script.
-        $(document).ready(function() {
-        $('a.embed').gdocsViewer({width: 740, height: 742});
-        $('#embedURL').gdocsViewer();
-        });
     // Google Analytics: change UA-XXXXX-X to be your site's ID.
     script.
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
