@@ -73,7 +73,7 @@ var type = upload.single('userPDF')
 
 
 
- mongoURL="mongodb://localhost:27017/SFITAbstracts123"
+ mongoURL="mongodb://SFIT:SFIT@localhost:27017/SFITAbstracts"
 
 //Mongoose Connection with MongoDB
 mongoose.connect(mongoURL);
