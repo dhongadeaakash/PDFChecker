@@ -29,7 +29,8 @@ console.log("PDF updated");
 
 exports.postSubmitReview=function(req,res){
 	
-
+	console.log(req.body)
+	
 	Pdf.findByIdAndUpdate(req.params.id,{ $push:{
 	"reviews":{
 	"reviewedBy":req.user._id,

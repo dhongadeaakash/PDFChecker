@@ -5,19 +5,19 @@ form(action='/submitreview/'+val._id,method='post')
 			.mdl-textfield.mdl-js-textfield
 				label.mdl-textfield__label(for='Creativity') 
 				| Creativity & Originality
-				input.mdl-slider.mdl-js-slider.mdl-badge(id="CreativityValue" type='range', min='0', max='100', value='0', tabindex='0' oninput='showMessageCC(this.value)', onchange='showMessageC(this.value)' data-badge='0' name='Creativity' required)
+				input.mdl-slider.mdl-js-slider.mdl-badge(id="CreativityValue"+'#{val._id}' type='range', min='0', max='100', value='0', tabindex='0' oninput='showMessageCC(this.value)', onchange='showMessageCC(this.value)' data-badge='0' name='Creativity' required)
 				script.
-					function showMessageC(value){
-						document.getElementById("CreativityValue").setAttribute("data-badge",value);
+					function showMessageCC(value){
+						document.getElementById("CreativityValue"+"#{val._id}").setAttribute("data-badge",value);
 					}
 		.mdl-cell.mdl-cell--6-col
 			.mdl-textfield.mdl-js-textfield
 				label.mdl-textfield__label(for='Scientific') 
 				| Scientific Thought & Engineering Goal 
-				input.mdl-slider.mdl-js-slider.mdl-badge(id="ScientificValue" type='range', min='0', max='100', value='0', tabindex='0' name='Scientific' oninput='showMessageS(this.value)', onchange='showMessageS(this.value)' data-badge='0' required)
+				input.mdl-slider.mdl-js-slider.mdl-badge(id="ScientificValue"+'#{val._id}' type='range', min='0', max='100', value='0', tabindex='0' name='Scientific' oninput='showMessageS(this.value)', onchange='showMessageS(this.value)' data-badge='0' required)
 				script.
 					function showMessageS(value){
-						document.getElementById("ScientificValue").setAttribute("data-badge",value);
+						document.getElementById("ScientificValue"+'#{val._id}').setAttribute("data-badge",value);
 					}	 
 
 
@@ -29,38 +29,38 @@ form(action='/submitreview/'+val._id,method='post')
 			.mdl-textfield.mdl-js-textfield
 				label.mdl-textfield__label(for='Thoroughness') 
 				| Thoroughness
-				input.mdl-slider.mdl-js-slider.mdl-badge(id="ThoroughnessValue" type='range', min='0', max='100', value='0', tabindex='0' name='Thoroughness' oninput='showMessageT(this.value)', onchange='showMessageT(this.value)' data-badge='0' required)
+				input.mdl-slider.mdl-js-slider.mdl-badge(id="ThoroughnessValue"+'#{val._id}' type='range', min='0', max='100', value='0', tabindex='0' name='Thoroughness' oninput='showMessageT(this.value)', onchange='showMessageT(this.value)' data-badge='0' required)
 				script.
 					function showMessageT(value){
-						document.getElementById("ThoroughnessValue").setAttribute("data-badge",value);
+						document.getElementById("ThoroughnessValue"+'#{val._id}').setAttribute("data-badge",value);
 					}
 		.mdl-cell.mdl-cell--6-col
 			.mdl-textfield.mdl-js-textfield
 				label.mdl-textfield__label(for='Skill') 
 				| Skill
-				input.mdl-slider.mdl-js-slider.mdl-badge(id="SkillValue" type='range', min='0', max='100', value='0', tabindex='0' name='Skill' oninput='showMessageSk(this.value)', onchange='showMessageSk(this.value)' data-badge='0' required)
+				input.mdl-slider.mdl-js-slider.mdl-badge(id="SkillValue"+'#{val._id}' type='range', min='0', max='100', value='0', tabindex='0' name='Skill' oninput='showMessageSk(this.value)', onchange='showMessageSk(this.value)' data-badge='0' required)
 				script.
 					function showMessageSk(value){
-						document.getElementById("SkillValue").setAttribute("data-badge",value);
+						document.getElementById("SkillValue"+'#{val._id}').setAttribute("data-badge",value);
 					}
 	.mdl-grid
 		.mdl-cell.mdl-cell--6-col
 			.mdl-textfield.mdl-js-textfield
 				label.mdl-textfield__label(for='SocialImpact') 
 				| Social Impact
-				input.mdl-slider.mdl-js-slider.mdl-badge(id="SIV" type='range', min='0', max='100', value='0', tabindex='0' name='SocialImpact' oninput='showMessageASDF(this.value)', onchange='showMessageASDF(this.value)' data-badge='0' required)
+				input.mdl-slider.mdl-js-slider.mdl-badge(id="SIV"+'#{val._id}' type='range', min='0', max='100', value='0', tabindex='0' name='SocialImpact' oninput='showMessageASDF(this.value)', onchange='showMessageASDF(this.value)' data-badge='0' required)
 				script.
 					function showMessageASDF(value){
-						document.getElementById("SIV").setAttribute("data-badge",value);
+						document.getElementById("SIV"+'#{val._id}').setAttribute("data-badge",value);
 					}
 		.mdl-cell.mdl-cell--6-col
 			.mdl-textfield.mdl-js-textfield
 				label.mdl-textfield__label(for='IndustrialImpact') 
 				| Industrial Impact
-				input.mdl-slider.mdl-js-slider.mdl-badge(id="IndustrialImpactValue" type='range', min='0', max='100', value='0', tabindex='0' name='IndustrialImpact' oninput='showMessageII(this.value)', onchange='showMessageII(this.value)' data-badge='0' required)
+				input.mdl-slider.mdl-js-slider.mdl-badge(id="IndustrialImpactValue"+'#{val._id}' type='range', min='0', max='100', value='0', tabindex='0' name='IndustrialImpact' oninput='showMessageII(this.value)', onchange='showMessageII(this.value)' data-badge='0' required)
 				script.
 					function showMessageII(value){
-						document.getElementById("IndustrialImpactValue").setAttribute("data-badge",value);
+						document.getElementById("IndustrialImpactValue"+'#{val._id}').setAttribute("data-badge",value);
 					}
 	.mdl-grid
 		.mdl-cell.mdl-cell--6-col

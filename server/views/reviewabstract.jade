@@ -31,14 +31,15 @@ style.
 								i.material-icons close
 								
 
-						dialog.Viewabstractmodal.mdl-dialog
+						dialog.Viewabstractmodal.mdl-dialog(class="dialog"+'#{val._id}')
 							.mdl-dialog__content 	
 								include reviewform
 							
-
-
 						script.
-							var dialog = document.querySelector('dialog');
+							d='.dialog'+'#{val._id}'
+							console.log(d)
+							var dialog = document.querySelector(d);
+							console.log(dialog)
 							var s='.show-modal'+'#{val._id}'
 							console.log(s)
 							var showModalButton = document.querySelector(s);
