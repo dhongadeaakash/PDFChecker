@@ -12,9 +12,12 @@ var fs = require('fs')
 var morgan = require('morgan')
 var path = require('path')
 var FileStreamRotator = require('file-stream-rotator')
-var logDirectory = path.join(__dirname, 'log')
 
-fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory)
+var ApachelogDirectory = path.join(__dirname, '/logs/Apachelogs')
+var debugLogs=path.join(__dirname,'/logs/debuglogs/')
+
+fs.existsSync(ApachelogDirectory) || fs.mkdirSync(ApachelogDirectory)
+fs.existsSync(debugLogs) || fs.mkdirSync(debugLogs)
 
 var passportConf = require('./server/config/passport'); 
 
@@ -23,13 +26,25 @@ var homeController = require('./server/controllers/home');
 var userController=require('./server/controllers/user')
 var pdfController=require('./server/controllers/pdf')
 
+//for Apache Log files
 
 var accessLogStream = FileStreamRotator.getStream({
   date_format: 'YYYYMMDD',
-  filename: path.join(logDirectory, 'access-%DATE%.log'),
+  filename: path.join(ApachelogDirectory, 'access-%DATE%.log'),
   frequency: 'daily',
   verbose: false
 });
+
+var util = require('util');
+var log_file = fs.createWriteStream(debugLogs+'/debug-'+((Date.parse(new Date())+'.log')), {flags : 'w'});
+
+
+var log_stdout = process.stdout;
+
+console.log = function() { //
+  log_file.write((new Date()).toLocaleTimeString()+" "+util.format.apply(null,arguments) + '\n');
+  log_stdout.write((new Date()).toLocaleTimeString()+" "+util.format.apply(null,arguments) + '\n');
+};
 
 
 

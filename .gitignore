@@ -3,4 +3,4 @@ public/vendor
 public/css/main.css.map
 public/uploads
 .sass-cache
-log
+logs
