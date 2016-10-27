@@ -33,6 +33,9 @@ style.
 								i.material-icons.mdl-color-text--grey file_download
 							//- .mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored(onClick="docdownloader()")
 								i.material-icons file_download
+						.mdl-list__item-secondary-content
+							a.mdl-list__item-secondary-action(href="/sendreport/"+val._id)
+								i.material-icons.mdl-color-text--grey send
 
 				each val in ignored
 					li.mdl-list__item.mdl-list__item--two-line
@@ -57,6 +60,9 @@ style.
 						.mdl-list__item-secondary-content
 							a.mdl-list__item-secondary-action(href="/downloadreport/"+val._id)
 								i.material-icons.mdl-color-text--grey file_download
+						.mdl-list__item-secondary-content
+							a.mdl-list__item-secondary-action(href="/sendreport/"+val._id)
+								i.material-icons.mdl-color-text--grey send
 				each val in pdfs
 					li.mdl-list__item.mdl-list__item--two-line
 						.mdl-list__item-primary-content
@@ -80,4 +86,7 @@ style.
 						.mdl-list__item-secondary-content
 							a.mdl-list__item-secondary-action(href="/downloadreport/"+val._id)
 								i.material-icons.mdl-color-text--grey file_download
+						.mdl-list__item-secondary-content
+							a.mdl-list__item-secondary-action(href="/sendreport/"+val._id)
+								i.material-icons.mdl-color-text--grey send
 

@@ -3,6 +3,8 @@ var User = require('../models/User')
 var PDFDocument = require('pdfkit'); // add pdfkit module to access it
 var path=require('path');
 var fs=require('fs');
+var blobStream = require('blob-stream')
+var nodemailer=require('nodemailer');
 
 exports.postUploadPdf=function(req,res,next){
 	var pdf= new Pdf({
@@ -13,7 +15,8 @@ exports.postUploadPdf=function(req,res,next){
 			filename:req.file.filename,
 			path:req.file.path,
 			title:req.body.title,
-			desc:req.body.desc
+			desc:req.body.desc,
+			email:req.body.email
 		});
 	pdf.save(function(err,done){ 
               res.redirect('/');
@@ -106,8 +109,6 @@ var doc = new PDFDocument();
 doc.pipe(res)
 
 
-
-
 Pdf.find({"_id":req.params.id},function(err,pdf){
 
 
@@ -129,12 +130,67 @@ doc.text('', 100, 30)
 
 doc.end();
 })
-
-
-
-
-
 }
 
 
- // {$push: {"friends": newUser["_id"]}},
+
+
+// mailing configurations starts here
+
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'ecell@sfitengg.org', //new mail id made for the sake of project
+        pass: 'Sfitecell@789' // by default emails will be sent from this id
+    }
+})
+
+
+
+exports.getSendReport=function(req,res)
+{
+				var doc = new PDFDocument();
+				doc.pipe(fs.createWriteStream(req.params.id+'.pdf'));
+				doc.text("Howdy!!");
+				
+				doc.end();
+					var htmlMailBody ='Hi' 
+			        	
+		
+			            var textMailBody = 'hi';
+			            var mailOptions = 
+			            {
+			                from: 'ASD', // sender address 
+			                to: 'ecell@sfitengg.org', // list of receivers 
+			                subject: 'Invitation ', // Subject line 
+			                text: textMailBody, // plaintext body alt for html 
+			                html: htmlMailBody,
+			                attachments:[
+			                {
+
+			                	filename:"TEST1.pdf",
+			                	path:req.params.id+'.pdf'
+
+
+			               	}]
+			            };
+
+			            // send mail with defined transport object 
+			            transporter.sendMail(mailOptions, function(error, info){
+			                if(error){
+			                    return console.log(error);
+			                }
+			                console.log('Message sent: ' + info.response);
+			                fs.unlinkSync(req.params.id+'.pdf')
+			                res.redirect('/');
+			            });
+
+
+
+
+// create a document and pipe to a blob
+// var doc = new PDFDocument();
+
+
+	
+}

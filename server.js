@@ -121,6 +121,7 @@ app.get('/admininit/:pass',userController.getAdminInit)
 app.get('/generatereport/:id',pdfController.getGenerateReport)
 app.get('/deletepdf/:id',pdfController.getDeleteUser)
 app.get('/downloadreport/:id',pdfController.getDownloadReport)
+app.get('/sendreport/:id',pdfController.getSendReport)
 //Starting listening for requests
 
 app.use(function(err, req, res, next){

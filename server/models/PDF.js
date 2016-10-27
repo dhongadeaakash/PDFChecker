@@ -11,6 +11,7 @@ var PdfSchema = new mongoose.Schema({
   desc:String,
   dept:String,
   level:String,
+  email:String,
   reviews:[{
   	reviewedBy:String,
   	Creativity:String,
