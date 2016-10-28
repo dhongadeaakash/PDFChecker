@@ -103,35 +103,95 @@ exports.getDeleteUser=function(req,res)
 }
 exports.getDownloadReport=function(req,res)
 {
-console.log("In download Report")
-var lorem="\n\n\n\n\n\n"
-var doc = new PDFDocument();
-
-doc.pipe(res)
+	Pdf.find({"_id":req.params.id},function(err,pdfmain){
 
 
-Pdf.find({"_id":req.params.id},function(err,pdf){
+ 	pdfjs.load('public/ARIALN.ttf', function(err, buf) {
+    		if (err) throw err
+
+   			 var fontArial = new pdfjs.TTFFont(buf)
+    // ...
+  				var doc = new pdfjs.Document({font: fontArial,padding:10})
+
+ 				 var tr, td, text
+				//Table Header Details
+				var header = doc.header()
+				table = header.table()
+				tr = table.tr()
+				tr.td('Pragati Abstract Reviews',{fontSize:16,textAlign:'center'})
+				tr = table.tr()
+				tr.td(pdfmain[0].title,{fontSize:14,textAlign:'center'})
+			
+
+				var footer = doc.footer()
+				footer.text("SFIT Ecell Pragati Abstract Reviews",{ textAlign: 'center' }).pageNumber().append('/').pageCount()
+
+				// doc.image(assets.logo, { width: 128 }) // put logo later
 
 
-for(var i=0;i<pdf[0].reviews.length;i++)
-{
-	lorem=lorem+"Creativity:  "+ pdf[0].reviews[i].Creativity+" \n"+"Scientific:  "+ pdf[0].reviews[i].Scientific+" \n"+"Thoroughness:  "+ pdf[0].reviews[i].Thoroughness+" \n"+"Skill:  "+ pdf[0].reviews[i].Skill+" \n"+"SocialImpact:  "+ pdf[0].reviews[i].SocialImpact+" \n"+"IndustrialImpact:  "+ pdf[0].reviews[i].IndustrialImpact+" \n"+"improvement:  "+ pdf[0].reviews[i].improvement+" \n"+"remarks:  "+ pdf[0].reviews[i].remarks+" \n\n"
+				text = doc.text({
+				  fontSize: 14, lineSpacing: 1.35
+				})
+
+				
+				var lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum id fugiunt, re eadem quae Peripatetici, verba. Tenesne igitur, inquam, Hieronymus Rhodius quid dicat esse summum bonum, quo putet omnia referri oportere? Quia nec honesto quic quam honestius nec turpi turpius.'
+
+// For Loop here
+
+				pdfmain[0].reviews.forEach(function(r){
+					
+
+				table = doc.table({
+				headerRows: 1, fontSize: 14,
+				borderHorizontalWidth: 0.1,
+				widths: ['17%', '17%', '17%', '17%', '17%','17%'],
+				lineSpacing: 1.35
+				})
+
+				tr = table.tr({borderBottomWidth: 1.5 })
+
+				tr.td('Creativity',{textAlign:'center'})
+				tr.td('Scientific',{textAlign:'center'})
+				tr.td('Thoroughness')
+				tr.td('Skill',{textAlign:'center'})
+				tr.td('Social Impact',{textAlign:'center'})
+				tr.td('Industrial Impact',{textAlign:'center'})
+				
+				  tr = table.tr()
+				  tr.td(r.Creativity,{textAlign:'center'})
+					tr.td(r.Creativity,{textAlign:'center'})
+					tr.td(r.Scientific,{textAlign:'center'})
+					tr.td(r.Thoroughness,{textAlign:'center'})
+					tr.td(r.Skill,{textAlign:'center'})
+					tr.td(r.SocialImpact,{textAlign:'center'})
+					tr.td(r.IndustrialImpact,{textAlign:'center'})
+				tr=table.tr()
+				tr.td("Improvements \n"+r.improvement,{colspan:7})
+				tr=table.tr()
+				tr.td("Remarks \n"+r.remarks,{colspan:7})
+
+				doc.text("\n\n\n\n")
+
+				});
+				
+				var pdf = doc.render()
+				res.contentType("application/pdf");
+				res.send(pdf.toString());
+
+			        
+});
+
+
+
+});
+
 }
-doc.fontSize(16).text("Pragati Abstract Reviews \n",100,30,{align:'center'}).font('Times-Roman', 30)
-doc.fontSize(16).text(pdf[0].title+"\n\n\n\n\n\n",100,50,{align:'center'}).font('Times-Roman', 30)
 
-doc.text('', 100, 30)
-   .font('Times-Roman', 13)
-   .moveDown()
-   .text(lorem,{
-     align: 'justify',
-     indent: 30,
-     ellipsis: true
-   });
 
-doc.end();
-})
-}
+
+
+
+
 
 
 
@@ -150,50 +210,11 @@ var transporter = nodemailer.createTransport({
 
 exports.getSendReport=function(req,res)
  {
-// 				var doc = new PDFDocument();
-// 				Pdf.
-// 				doc.pipe(fs.createWriteStream(req.params.id+'.pdf'));
-// 				doc.text("Howdy!!");
-				
-// 				doc.end();
-// 					var htmlMailBody ='Hi' 
-			        	
-		
-// 			            var textMailBody = 'hi';
-// 			            var mailOptions = 
-// 			            {
-// 			                from: 'ASD', // sender address 
-// 			                to: 'ecell@sfitengg.org', // list of receivers 
-// 			                subject: 'Invitation ', // Subject line 
-// 			                text: textMailBody, // plaintext body alt for html 
-// 			                html: htmlMailBody,
-// 			                attachments:[
-// 			                {
 
-// 			                	filename:"TEST1.pdf",
-// 			                	path:req.params.id+'.pdf'
+	Pdf.find({"_id":req.params.id},function(err,pdfmain){
 
 
-// 			               	}]	
-// 			            };
-
-// 			            // send mail with defined transport object 
-// 			            transporter.sendMail(mailOptions, function(error, info){
-// 			                if(error){
-// 			                    return console.log(error);
-// 			                }
-// 			                console.log('Message sent: ' + info.response);
-// 			                fs.unlinkSync(req.params.id+'.pdf')
-// 			                res.redirect('/');
-// 			            });
-
-
-
-
-Pdf.find({"_id":req.params.id},function(err,pdfmain){
-
-
-pdfjs.load('public/ARIALN.ttf', function(err, buf) {
+ 	pdfjs.load('public/ARIALN.ttf', function(err, buf) {
     if (err) throw err
 
     var fontArial = new pdfjs.TTFFont(buf)
@@ -243,24 +264,6 @@ pdfjs.load('public/ARIALN.ttf', function(err, buf) {
 				tr.td('Skill',{textAlign:'center'})
 				tr.td('Social Impact',{textAlign:'center'})
 				tr.td('Industrial Impact',{textAlign:'center'})
-
-				// var rows = [
-				//   {
-				//     Creativity: r.Creativity,
-				//     Scientific:r.Scientific,
-				//     Thoroughness:r.Thoroughness,
-				//     Skill:r.Skill,
-				//     SocialImpact:r.SocialImpact,
-				//     IndustrialImpact:r.IndustrialImpact
-				//   },
-				//   {
-				//     improvement:r.improvement
-				//   },
-				//   {
-				//    remarks:r.remarks
-				//   }
-				// ]
-
 				
 				  tr = table.tr()
 				  tr.td(r.Creativity,{textAlign:'center'})
@@ -288,10 +291,10 @@ pdfjs.load('public/ARIALN.ttf', function(err, buf) {
 
 				var pdf = doc.render()
 
-							var htmlMailBody ='Hi' 
+						 
 			        	
 		
-			            var textMailBody = 'hi';
+			            var textMailBody = htmlMailBody = 'PFA attached review.';
 			            var mailOptions = 
 			            {
 			                from: 'Team Pragati', // sender address 
@@ -317,7 +320,7 @@ pdfjs.load('public/ARIALN.ttf', function(err, buf) {
 			                console.log('Message sent: ' + info.response);
 			                // fs.unlinkSync(req.params.id+'.pdf')
 			            });
-			            res.redirect('/');
+			            	res.redirect('/')
 
 				});
 }
