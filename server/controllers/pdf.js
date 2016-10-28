@@ -5,6 +5,7 @@ var path=require('path');
 var fs=require('fs');
 var blobStream = require('blob-stream')
 var nodemailer=require('nodemailer');
+var pdfjs=require('pdfjs')
 
 exports.postUploadPdf=function(req,res,next){
 	var pdf= new Pdf({
@@ -148,31 +149,164 @@ var transporter = nodemailer.createTransport({
 
 
 exports.getSendReport=function(req,res)
-{
-				var doc = new PDFDocument();
-				doc.pipe(fs.createWriteStream(req.params.id+'.pdf'));
-				doc.text("Howdy!!");
+ {
+// 				var doc = new PDFDocument();
+// 				Pdf.
+// 				doc.pipe(fs.createWriteStream(req.params.id+'.pdf'));
+// 				doc.text("Howdy!!");
 				
-				doc.end();
-					var htmlMailBody ='Hi' 
+// 				doc.end();
+// 					var htmlMailBody ='Hi' 
+			        	
+		
+// 			            var textMailBody = 'hi';
+// 			            var mailOptions = 
+// 			            {
+// 			                from: 'ASD', // sender address 
+// 			                to: 'ecell@sfitengg.org', // list of receivers 
+// 			                subject: 'Invitation ', // Subject line 
+// 			                text: textMailBody, // plaintext body alt for html 
+// 			                html: htmlMailBody,
+// 			                attachments:[
+// 			                {
+
+// 			                	filename:"TEST1.pdf",
+// 			                	path:req.params.id+'.pdf'
+
+
+// 			               	}]	
+// 			            };
+
+// 			            // send mail with defined transport object 
+// 			            transporter.sendMail(mailOptions, function(error, info){
+// 			                if(error){
+// 			                    return console.log(error);
+// 			                }
+// 			                console.log('Message sent: ' + info.response);
+// 			                fs.unlinkSync(req.params.id+'.pdf')
+// 			                res.redirect('/');
+// 			            });
+
+
+
+
+Pdf.find({"_id":req.params.id},function(err,pdfmain){
+
+
+pdfjs.load('public/ARIALN.ttf', function(err, buf) {
+    if (err) throw err
+
+    var fontArial = new pdfjs.TTFFont(buf)
+    // ...
+  				var doc = new pdfjs.Document({font: fontArial,padding:10})
+
+ 				 var tr, td, text
+				//Table Header Details
+				var header = doc.header()
+				table = header.table()
+				tr = table.tr()
+				tr.td('Pragati Abstract Reviews',{fontSize:16,textAlign:'center'})
+				tr = table.tr()
+				tr.td(pdfmain[0].title,{fontSize:14,textAlign:'center'})
+			
+
+				var footer = doc.footer()
+				footer.text("SFIT Ecell Pragati Abstract Reviews",{ textAlign: 'center' }).pageNumber().append('/').pageCount()
+
+				// doc.image(assets.logo, { width: 128 }) // put logo later
+
+
+				text = doc.text({
+				  fontSize: 14, lineSpacing: 1.35
+				})
+
+				
+				var lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum id fugiunt, re eadem quae Peripatetici, verba. Tenesne igitur, inquam, Hieronymus Rhodius quid dicat esse summum bonum, quo putet omnia referri oportere? Quia nec honesto quic quam honestius nec turpi turpius.'
+
+// For Loop here
+
+				pdfmain[0].reviews.forEach(function(r){
+					
+
+				table = doc.table({
+				headerRows: 1, fontSize: 14,
+				borderHorizontalWidth: 0.1,
+				widths: ['17%', '17%', '17%', '17%', '17%','17%'],
+				lineSpacing: 1.35
+				})
+
+				tr = table.tr({borderBottomWidth: 1.5 })
+
+				tr.td('Creativity',{textAlign:'center'})
+				tr.td('Scientific',{textAlign:'center'})
+				tr.td('Thoroughness')
+				tr.td('Skill',{textAlign:'center'})
+				tr.td('Social Impact',{textAlign:'center'})
+				tr.td('Industrial Impact',{textAlign:'center'})
+
+				// var rows = [
+				//   {
+				//     Creativity: r.Creativity,
+				//     Scientific:r.Scientific,
+				//     Thoroughness:r.Thoroughness,
+				//     Skill:r.Skill,
+				//     SocialImpact:r.SocialImpact,
+				//     IndustrialImpact:r.IndustrialImpact
+				//   },
+				//   {
+				//     improvement:r.improvement
+				//   },
+				//   {
+				//    remarks:r.remarks
+				//   }
+				// ]
+
+				
+				  tr = table.tr()
+				  tr.td(r.Creativity,{textAlign:'center'})
+					tr.td(r.Creativity,{textAlign:'center'})
+					tr.td(r.Scientific,{textAlign:'center'})
+					tr.td(r.Thoroughness,{textAlign:'center'})
+					tr.td(r.Skill,{textAlign:'center'})
+					tr.td(r.SocialImpact,{textAlign:'center'})
+					tr.td(r.IndustrialImpact,{textAlign:'center'})
+				tr=table.tr()
+				tr.td("Improvements \n"+r.improvement,{colspan:7})
+				tr=table.tr()
+				tr.td("Remarks \n"+r.remarks,{colspan:7})
+
+				doc.text("\n\n\n\n")
+
+				});
+
+			
+				
+
+
+
+
+
+				var pdf = doc.render()
+
+							var htmlMailBody ='Hi' 
 			        	
 		
 			            var textMailBody = 'hi';
 			            var mailOptions = 
 			            {
-			                from: 'ASD', // sender address 
-			                to: 'ecell@sfitengg.org', // list of receivers 
-			                subject: 'Invitation ', // Subject line 
+			                from: 'Team Pragati', // sender address 
+			                to: pdfmain[0].email, // list of receivers 
+			                subject: 'Pragati Abstract Review ', // Subject line 
 			                text: textMailBody, // plaintext body alt for html 
 			                html: htmlMailBody,
 			                attachments:[
 			                {
 
-			                	filename:"TEST1.pdf",
-			                	path:req.params.id+'.pdf'
+			                	filename:pdfmain[0].title+" Abstract Review",
+			                	path: pdf.toDataURL()
 
 
-			               	}]
+			               	}]	
 			            };
 
 			            // send mail with defined transport object 
@@ -181,16 +315,16 @@ exports.getSendReport=function(req,res)
 			                    return console.log(error);
 			                }
 			                console.log('Message sent: ' + info.response);
-			                fs.unlinkSync(req.params.id+'.pdf')
-			                res.redirect('/');
+			                // fs.unlinkSync(req.params.id+'.pdf')
 			            });
+			            res.redirect('/');
+
+				});
+}
+);
 
 
 
-
-// create a document and pipe to a blob
-// var doc = new PDFDocument();
-
-
+// document.querySelector('#preview').setAttribute('src', pdf.toDataURL())
 	
 }

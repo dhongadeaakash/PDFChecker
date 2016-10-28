@@ -42,6 +42,7 @@
     "nodemailer": "^2.6.4",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "pdfjs": "^1.0.0-alpha.1",
     "pdfkit": "^0.8.0"
   },
   "devDependencies": {}
