@@ -20,5 +20,30 @@ block main
 								.mdl-layout-spacer
 								button#login.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--raised.mdl-button--colored(type='submit')
 									| Login
-
+								button.mdl-button.show-modal(type='button') Forgot passowrd?
 						.mdl-layout-spacer
+
+					dialog.mdl-dialog
+						.mdl-dialog__content
+						p Forgot your password ha?
+						p No problemo Just Enter your email id and we`ll be sorted. Do check your mail for a new password in a lil while.
+						form(action='/forgotpass' method='post')
+							.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+									input#username.mdl-textfield__input(type='email' name='email')
+									label.mdl-textfield__label(for='email') User Email
+							.mdl-dialog__actions.mdl-dialog__actions--full-width
+							button.mdl-button.close(type='submit') Submit
+					script.
+						var dialog = document.querySelector('dialog');
+						var showModalButton = document.querySelector('.show-modal');
+						if (! dialog.showModal) {
+						dialogPolyfill.registerDialog(dialog);
+						}
+						showModalButton.addEventListener('click', function() {
+						dialog.showModal();
+						});
+						dialog.querySelector('.close').addEventListener('click', function() {
+						dialog.close();
+						});
+
+					

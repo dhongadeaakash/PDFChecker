@@ -187,15 +187,6 @@ exports.getDownloadReport=function(req,res)
 
 }
 
-
-
-
-
-
-
-
-
-
 // mailing configurations starts here
 
 var transporter = nodemailer.createTransport({
@@ -324,10 +315,20 @@ exports.getSendReport=function(req,res)
 
 				});
 }
-);
+);	
+}
+exports.getRemoveIgnored=function(req,res){
+	console.log(req.params.id)
+
+	Pdf.findByIdAndUpdate(req.params.id,{$pull:{"passedBy":req.user._id}},function(err,model){
+
+	User.findByIdAndUpdate(req.user._id,{ $pull:{"ignored":req.params.id},$push:{"notseen":req.params.id}},function(err,model)
+		{
+			res.redirect('/')
+		})
+
+	})
 
 
 
-// document.querySelector('#preview').setAttribute('src', pdf.toDataURL())
-	
 }

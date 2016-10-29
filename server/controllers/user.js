@@ -1,6 +1,7 @@
 var User = require('../models/User');
 var Pdf = require('../models/PDF');
 var passport=require('passport');
+var bcrypt= require('bcrypt-nodejs');
 
 exports.getSignup=function(req,res){
 if(req.user){
@@ -101,6 +102,51 @@ else
 {
 console.log("password wrong cannot init.")
 }
+   
+}
 
-        
+exports.getChangePassword=function(req,res)
+{
+res.render('changepassword')
+}
+exports.postChangePassword=function(req,res)
+{
+
+
+ bcrypt.compare(req.body.oldPassword,req.user.password,function(err, isMatch) {
+    if (err) return cb(err);
+  if(isMatch)
+  {
+    console.log("password is correct")
+
+    bcrypt.genSalt(10, function(err, salt) {
+    if (err) return next(err);
+    bcrypt.hash(req.body.newPassword, salt, null, function(err, hash) {
+
+      if (err) return next(err);
+       User.findOneAndUpdate({"email":req.user.email},{"password":hash},function(err,user){
+          res.redirect('/')
+
+       });
+        });
+        });
+
+
+
+
+
+
+
+  }
+  else
+  {
+    console.log("password is False")
+  }
+
+  });
+
+
+
+
+  
 }

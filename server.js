@@ -122,6 +122,11 @@ app.get('/generatereport/:id',pdfController.getGenerateReport)
 app.get('/deletepdf/:id',pdfController.getDeleteUser)
 app.get('/downloadreport/:id',pdfController.getDownloadReport)
 app.get('/sendreport/:id',pdfController.getSendReport)
+app.get('/removeignored/:id',pdfController.getRemoveIgnored)
+app.post('/forgotpass',homeController.postForgotPass)
+app.get('/changepassword',userController.getChangePassword)
+app.post('/changepassword',userController.postChangePassword)
+
 //Starting listening for requests
 
 app.use(function(err, req, res, next){
