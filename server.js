@@ -42,8 +42,8 @@ var log_file = fs.createWriteStream(debugLogs+'/debug-'+((Date.parse(new Date())
 var log_stdout = process.stdout;
 
 console.log = function() { //
-  log_file.write((new Date()).toLocaleTimeString()+" "+util.format.apply(null,arguments) + '\n');
-  log_stdout.write((new Date()).toLocaleTimeString()+" "+util.format.apply(null,arguments) + '\n');
+  log_file.write((new Date()).toLocaleString()+" "+util.format.apply(null,arguments) + '\n');
+  log_stdout.write((new Date()).toLocaleString()+" "+util.format.apply(null,arguments) + '\n');
 };
 
 
