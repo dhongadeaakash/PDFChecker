@@ -319,6 +319,7 @@ exports.getSendReport=function(req,res)
 }
 exports.getRemoveIgnored=function(req,res){
 	console.log(req.params.id)
+	
 
 	Pdf.findByIdAndUpdate(req.params.id,{$pull:{"passedBy":req.user._id}},function(err,model){
 

@@ -702,3 +702,27 @@ textarea {
 {
   padding: 0px;
 }
+@media screen and (max-width: 600px) {
+  .mobileonly {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
+  .width24
+  {
+    width: 33%;
+
+  }
+
+}
+.wordwrapformobile
+  {
+    word-wrap: break-word;
+  }
+.width50
+  {
+    width: 50%;
+  }
