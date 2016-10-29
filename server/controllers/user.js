@@ -16,7 +16,7 @@ if(req.user){
 }
 else
 {
-  res.redirect('/')
+  res.redirect('/',{err:false})
   // res.render('signup')
 }
 }
@@ -63,7 +63,7 @@ exports.postSignIn = function(req,res, next){
       if (err) return next(err);
       if (!user) {
         console.log('errors at post signin ');
-        return res.redirect('/');
+       res.redirect('/');
       }
       req.logIn(user, function(err) {
         if (err) return next(err);
@@ -72,6 +72,8 @@ exports.postSignIn = function(req,res, next){
       });
     })(req, res, next);
 }
+
+
 
 exports.getSignOut = function(req,res, next){
   req.logout();
@@ -130,23 +132,11 @@ exports.postChangePassword=function(req,res)
        });
         });
         });
-
-
-
-
-
-
-
   }
   else
   {
     console.log("password is False")
-  }
+  }   
 
   });
-
-
-
-
-  
 }
