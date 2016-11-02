@@ -1,5 +1,7 @@
 extends ./includes/layout
 block main
+	style.
+		@media screen and (max-width:600px){.mdl-data-table{table-layout:fixed;width:100%}#my-table td,th{width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;-o-text-overflow:ellipsis}#my-table{margin-top:24px}.material-icons{vertical-align:-25%}.mdl-data-table th,td{text-align:left!important}.center{text-align:center}}
 	// Simple header with scrollable tabs.
 	.mdl-layout.mdl-js-layout.mdl-layout--fixed-header
 		header.mdl-layout__header.mdl-color--blue
@@ -14,11 +16,11 @@ block main
 			.mdl-grid
 				.snippet-demo
 					.snippet-demo-container.demo-data-table.demo-data-table__data-table
-						table.mdl-data-table.mdl-js-data-table.mdl-data-table--selectable.mdl-shadow--2dp.is-upgraded(data-upgraded=',MaterialDataTable')
+						table#my-tables.mdl-data-table.mdl-js-data-table.mdl-data-table--selectable.mdl-shadow--2dp.is-upgraded(data-upgraded=',MaterialDataTable')
 							h4 Reviewed By #{val.reviewername}
 							thead
 								tr
-									th.mdl-data-table__cell--non-numeric  Creativity
+									th.mdl-data-table__cell--non-numeric    Creativity
 									th.mdl-data-table__cell--non-numeric 	Scientific
 									th.mdl-data-table__cell--non-numeric 	Thoroughness
 									th.mdl-data-table__cell--non-numeric 	Skill

@@ -7,7 +7,7 @@ style.
 		ul.demo-list-two.mdl-list
 				each val in reviewed
 					li.mdl-list__item.mdl-list__item--three-line
-						.mdl-list__item-primary-content.width24.width50
+						.mdl-list__item-primary-content.width24.width50(style="width: 24%;")
 							i.material-icons.mdl-list__item-avatar.mobileonly note
 							div.wordwrapformobile #{val.title}
 							//- span.mdl-list__item-sub-title(style=" word-wrap: break-word;") #{val.desc}
@@ -39,7 +39,7 @@ style.
 
 				each val in ignored
 					li.mdl-list__item.mdl-list__item----three-line
-						.mdl-list__item-primary-content.width24.width50
+						.mdl-list__item-primary-content.width24.width50(style="width: 24%;")
 							i.material-icons.mdl-list__item-avatar.mobileonly note
 							div.wordwrapformobile #{val.title}
 							//- span.mdl-list__item-sub-title(style=" word-wrap: break-word;") #{val.desc}
@@ -65,7 +65,7 @@ style.
 								i.material-icons.mdl-color-text--grey send
 				each val in pdfs
 					li.mdl-list__item.mdl-list__item--three-line
-						.mdl-list__item-primary-content.width24.width50
+						.mdl-list__item-primary-content.width24.width50(style="width: 24%;")
 							i.material-icons.mdl-list__item-avatar.mobileonly note
 							div.wordwrapformobile #{val.title}
 							//- span.mdl-list__item-sub-title(style=" word-wrap: break-word;") #{val.desc}
