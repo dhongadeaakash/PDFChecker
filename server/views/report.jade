@@ -2,8 +2,44 @@ style.
 	.demo-list-two {
 	width: 100%;
 	}
+	.legend{
+	padding-left:24px;
+	}
+	
 .mdl-grid
+	.mdl-cell
+		.snippet-demo
+			.snippet-demo-container.demo-data-table.demo-data-table__data-table.mdl-layout-spacer
+				table#my-table-report.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp.is-upgraded(data-upgraded=',MaterialDataTable' align="center")
+					thead
+						tr
+							th.mdl-data-table__cell--non-numeric Symbol
+							th.mdl-data-table__cell--non-numeric Description
+					tbody
+						tr
+							td.mdl-data-table__cell--non-numeric.legend(style="padding: 0; padding-left:24px;")
+								i.material-icons.mdl-color-text--red add_alert
+							td.mdl-data-table__cell--non-numeric.legend(style="padding: 0; padding-left:12px;padding-right:12px;")
+								p The corresponding abstract is not reviewed by the user.
+
+						tr
+							td.mdl-data-table__cell--non-numeric.legend(style="padding: 0; padding-left:24px;")
+								i.material-icons.mdl-color-text--red error
+							td.mdl-data-table__cell--non-numeric.legend(style="padding: 0; padding-left:12px;padding-right:12px;")
+								p The corresponding abstract is ignored by the user.<br> Click on the icon to review it.
+						tr
+							td.mdl-data-table__cell--non-numeric.legend(style="padding: 0; padding-left:24px;")
+								i.material-icons.mdl-color-text--green done
+							td.mdl-data-table__cell--non-numeric.legend(style="padding: 0; padding-left:12px;padding-right:12px;")
+								p The corresponding abstract is reviewed by the user.
+						tr
+							td.mdl-data-table__cell--non-numeric.legend(style="padding: 0; padding-left:24px;")
+								i.material-icons.mdl-color-text--red remove
+							td.mdl-data-table__cell--non-numeric.legend(style="padding: 0; padding-left:12px;padding-right:12px;")
+								p Not applicable to that abstract.
+
 	.mdl-cell.mdl-cell--6-col.mdl-cell--2-offset-desktop.mdl-cell--12-col-phone
+		//- 
 		ul.demo-list-two.mdl-list
 		
 			each val in pdfs
@@ -16,7 +52,7 @@ style.
 					.mdl-list__item-secondary-content
 						.mdl-list__item-secondary-info Not Seen
 						a.mdl-list__item-secondary-action(href='#')
-							i.material-icons.mdl-color-text--green done
+							i.material-icons.mdl-color-text--red add_alert
 					.mdl-list__item-secondary-content
 						.mdl-list__item-secondary-info Ignored
 						a.mdl-list__item-secondary-action(href='#')
@@ -39,7 +75,8 @@ style.
 					.mdl-list__item-secondary-content
 						.mdl-list__item-secondary-info Ignored
 						a.mdl-list__item-secondary-action(href='/removeignored/'+val._id)
-							i.material-icons.mdl-color-text--green done
+							i.material-icons.mdl-color-text--red error
+							//- span review It
 					.mdl-list__item-secondary-content
 						.mdl-list__item-secondary-info Reviewed
 						a.mdl-list__item-secondary-action(href='#')

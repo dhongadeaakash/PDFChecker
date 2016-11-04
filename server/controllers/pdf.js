@@ -51,10 +51,15 @@ exports.postSubmitReview=function(req,res){
 	}
 	},function(err,model){
 		
+		if(err)
+		{
+			console.log(err)
+		}
 		User.findByIdAndUpdate(req.user._id,{ $push:{"viewed":req.params.id},$pull:{"notseen":req.params.id}},function(err,model)
 		{
 			res.redirect('/')
 		})
+
 
 
 	})
@@ -137,9 +142,14 @@ exports.getDownloadReport=function(req,res)
 				var lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum id fugiunt, re eadem quae Peripatetici, verba. Tenesne igitur, inquam, Hieronymus Rhodius quid dicat esse summum bonum, quo putet omnia referri oportere? Quia nec honesto quic quam honestius nec turpi turpius.'
 
 // For Loop here
-
+				var counter=1;
 				pdfmain[0].reviews.forEach(function(r){
-					
+
+				doc.text("Review : "+counter+"\n",{
+				  fontSize: 14, lineSpacing: 2
+				})	
+				
+				counter=counter+1;
 
 				table = doc.table({
 				headerRows: 1, fontSize: 14,
@@ -232,13 +242,16 @@ exports.getSendReport=function(req,res)
 				  fontSize: 14, lineSpacing: 1.35
 				})
 
-				
-				var lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum id fugiunt, re eadem quae Peripatetici, verba. Tenesne igitur, inquam, Hieronymus Rhodius quid dicat esse summum bonum, quo putet omnia referri oportere? Quia nec honesto quic quam honestius nec turpi turpius.'
-
 // For Loop here
-
+				var counter=1;
 				pdfmain[0].reviews.forEach(function(r){
-					
+				
+
+				doc.text("Review : "+counter+"\n",{
+				  fontSize: 14, lineSpacing: 2
+				})
+
+				counter=counter+1;
 
 				table = doc.table({
 				headerRows: 1, fontSize: 14,

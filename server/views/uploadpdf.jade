@@ -3,20 +3,20 @@
 							h4.mdl-color-text--black Upload PDF
 							form(action="/uploadpdf",method="post",enctype='multipart/form-data')
 								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-									input.mdl-textfield__input(type='text' name="title")
+									input.mdl-textfield__input(type='text' name="title" required)
 									label.mdl-textfield__label Title
 								.mdl-textfield.mdl-js-textfield
-									textarea#sample5.mdl-textfield__input(type='text', rows='3' name="desc")
+									textarea#sample5.mdl-textfield__input(type='text', rows='3' name="desc" required)
 									label.mdl-textfield__label(for='desc') Description
 								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-									input.mdl-textfield__input(type='text' name="email")
+									input.mdl-textfield__input(type='text' name="email" required)
 									label.mdl-textfield__label Group Leader`s Email
 
 								.file_input_div
 									.file_input
 										label.image_input_button.mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-js-ripple-effect.mdl-button--colored
 											i.material-icons file_upload
-											input#file_input_file.none(type='file' name="userPDF")
+											input#file_input_file.none(type='file' name="userPDF" required)
 									#file_input_text_div.mdl-textfield.mdl-js-textfield.textfield-demo
 										input#file_input_text.file_input_text.mdl-textfield__input(type='text', disabled='', readonly='')
 										label.mdl-textfield__label(for='file_input_text')

@@ -8,13 +8,13 @@
 									input#username.mdl-textfield__input(type='text',name="userName",required='')
 									label.mdl-textfield__label(for='name') Name
 								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-									input#username.mdl-textfield__input(type='email',name='userEmail')
+									input#username.mdl-textfield__input(type='email',name='userEmail' required)
 									label.mdl-textfield__label(for='email') Email
 								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-									input#username.mdl-textfield__input(type='password',name='userPassword')
+									input#username.mdl-textfield__input(type='password',name='userPassword' required)
 									label.mdl-textfield__label(for='email') Password
 								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select
-									input#country.mdl-textfield__input(value='user', type='text', readonly='', tabindex='-1' name="type")
+									input#country.mdl-textfield__input(value='user', type='text', readonly='', tabindex='-1' name="type" required)
 									label.mdl-textfield__label(for='country') Type
 									ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='country')
 										li.mdl-menu__item user

@@ -1,4 +1,12 @@
-h4.mdl-color-text--black Review Form
+.mdl-grid
+	.mdl-cell.mdl-cell--11-col
+		h4.mdl-color-text--black(style="text-align: center;") Review Form
+	.mdl-cell.mdl-cell--1-col
+		.mdl-dialog__actions.mdl-dialog__actions
+			button.mdl-button.mdl-js-button.mdl-button--icon.close(type='button') 
+				i.material-icons close
+
+span.mdl-color-text--black Please review each attribute out of 100
 form(action='/submitreview/'+val._id,method='post')
 	.mdl-grid
 		.mdl-cell.mdl-cell--6-col
