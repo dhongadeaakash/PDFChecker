@@ -12,6 +12,7 @@ var fs = require('fs')
 var morgan = require('morgan')
 var path = require('path')
 var FileStreamRotator = require('file-stream-rotator')
+var compression=require('compression')
 
 var ApachelogDirectory = path.join(__dirname, '/logs/Apachelogs')
 var debugLogs = path.join(__dirname, '/logs/debuglogs/')
@@ -60,6 +61,8 @@ var app = express();
 app.use(morgan('combined', {
     stream: accessLogStream
 }))
+
+app.use(compression());
 
 
 var multer = require('multer');
