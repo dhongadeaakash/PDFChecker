@@ -75,7 +75,7 @@ bcrypt.genSalt(10, function(err, salt) {
 				            var mailOptions = 
 				            {
 				                from: 'Team Pragati', // sender address 
-				                to: 'ecell@sfitengg.org', // list of receivers 
+				                to: req.body.email, // list of receivers 
 				                subject: 'Pragati Abstract Review ', // Subject line 
 				                text: textMailBody, // plaintext body alt for html 
 				                html: htmlMailBody
